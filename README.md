@@ -27,14 +27,16 @@ node testCreateCollection.js par ex
 # Mes différentes méthodes selon si tu es Administrator, Creator ou Beneficiary
 
 Administrator : 
--Créer un créator
--créer un beneficiary
+POST : Créer un créator
+POST : Créer un beneficiary
 
 Creator : 
--Obtenir un créateur par son ID
--Obtenir tous les créateurs
--Obtenir l'adresse ETH à partir de l'ID du beneficiare
--Créer une collection NFT et minter n NFT à certaines adresse, avec des metadata et des rights
--créer un right
+GET : Obtenir un créateur par son ID
+GET : Obtenir tous les créateurs
+GET : Obtenir l'adresse ETH à partir de l'ID du beneficiare
+POST : Créer une collection NFT et minter n NFT à certaines adresse, avec des metadata et des rights
+POST : créer un right
+UPDATE : mettre à jour un nom de creator
 
 Beneficiary : 
+
