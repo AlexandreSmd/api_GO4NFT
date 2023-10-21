@@ -1,0 +1,16 @@
+USE DatabaseAPI;
+-- Création de la table "CREATOR"
+CREATE TABLE CREATOR (
+    Creator_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Creator_Name VARCHAR(255) NOT NULL,
+    Creator_APIKey VARCHAR(100) UNIQUE NOT NULL,
+    Creator_IDOfCollection INT,
+    FOREIGN KEY (Creator_IDOfCollection) REFERENCES COLLECTION(Collection_ID)
+);
+
+ALTER TABLE CREATOR
+DROP COLUMN Creator_APIKey;
+
+ALTER TABLE CREATOR
+ADD Creator_keypub VARCHAR(255) NOT NULL,
+ADD Creator_keyprv VARCHAR(255) NOT NULL;

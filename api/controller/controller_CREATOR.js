@@ -1,0 +1,56 @@
+const db = require('../middleware/connectDB');
+
+// Méthode GET pour obtenir tous les créateurs
+const getAllCreators = async (req, res) => {
+  try {
+    const creators = await db.promise().query('SELECT * FROM CREATOR');
+    res.json(creators);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des créateurs :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
+// Méthode GET pour obtenir un créateur par son ID
+const getOneCreatorNameByID = async (req, res) => {
+  const creatorId = req.params.id; // L'ID est extrait des paramètres de l'URL
+
+  try {
+    const [rows] = await db.promise().query('SELECT Creator_Name FROM CREATOR WHERE Creator_ID = ?', creatorId);
+
+    // Vérifiez si des résultats ont été trouvés
+    if (rows.length === 1) {
+      const creatorName = rows[0].Creator_Name;
+      res.json({ Creator_Name: creatorName });
+    } else {
+      res.status(404).json({ error: 'Créateur non trouvé' });
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération du nom du créateur :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
+
+// Méthode POST pour créer un créateur
+const createCreator = async (req, res) => {
+  const { Creator_Name, Creator_keypub, Creator_keyprv, Creator_IDOfCollection } = req.body; // Les données sont extraites du corps de la requête
+
+  try {
+    const result = await db.promise().query(
+      'INSERT INTO CREATOR (Creator_Name, Creator_keypub, Creator_keyprv, Creator_IDOfCollection) VALUES (?, ?, ?, ?)',
+      [Creator_Name, Creator_keypub, Creator_keyprv, Creator_IDOfCollection]
+    );
+
+    res.status(201).json({ message: 'Créateur ajouté avec succès', id: result.insertId });
+  } catch (error) {
+    console.error('Erreur lors de la création du créateur :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la création du créateur' });
+  }
+};
+
+module.exports = {
+  getAllCreators,
+  getOneCreatorNameByID,
+  createCreator,
+};
