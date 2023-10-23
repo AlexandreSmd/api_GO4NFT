@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controller/controller_CREATOR');
-const apiAuthMiddleware = require('../middleware/apiAuthMiddleware'); // Importez votre middleware ici
-const apiAuthMiddleware2 = require('../middleware/apiAuthMiddleware2');
+const apiAuthMiddleware = require('../middleware/apiAuthMiddlewareCreator'); // Importez votre middleware ici
+const apiAuthMiddleware2 = require('../middleware/apiAuthMiddlewareAdministrator');
 
 // Route pour obtenir tous les créateurs (seulement autorisé pour les créator)
 router.get('/creator', apiAuthMiddleware.checkKeyPair, controller.getAllCreators);

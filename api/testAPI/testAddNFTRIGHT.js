@@ -4,8 +4,8 @@ const axios = require('axios');
 const baseURL = 'http://localhost:3000/api';
 
 // Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
-const keypub = '123';
-const keyprv = '123';
+const keypub = '12345';
+const keyprv = '12345';
 
 // Fonction de test pour créer un nouveau "NFTRIGHT"
 async function testCreateNFTRight() {
