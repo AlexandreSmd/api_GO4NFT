@@ -9,3 +9,6 @@ CREATE TABLE COLLECTION (
 -- Ajout de la colonne "Collection_Symbol" à la table "COLLECTION"
 ALTER TABLE COLLECTION
 ADD Collection_Symbol VARCHAR(255) NOT NULL;
+
+ALTER TABLE COLLECTION
+MODIFY Collection_Creator INT NOT NULL;

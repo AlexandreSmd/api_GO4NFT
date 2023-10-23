@@ -36,7 +36,13 @@ GET : Obtenir tous les créateurs
 GET : Obtenir l'adresse ETH à partir de l'ID du beneficiare
 POST : Créer une collection NFT et minter n NFT à certaines adresse, avec des metadata et des rights
 POST : créer un right
-UPDATE : mettre à jour un nom de creator
+UPDATE : mettre à jour un nom de creator  
 
 Beneficiary : 
+Lire tt les rights qu'on a en tant que Beneficiaire
 
+
+
+
+ROAD MAP 
+-coder une méthode pour ajouter un nouveau right à un NFT en tant que créator et donc associé chaque NFT et chaque Owner de NFT à ce nouveau right

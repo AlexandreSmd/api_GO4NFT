@@ -4,8 +4,8 @@ const axios = require('axios');
 const baseURL = 'http://localhost:3000/api';
 
 // Clé API valide pour les tests (remplacez-la par votre clé API réelle si nécessaire)
-const keypub = '111';
-const keyprv = '111';
+const keypub = '123';
+const keyprv = '123';
 
 // Fonction de test pour créer une nouvelle collection
 async function testCreateCollection() {
@@ -31,7 +31,11 @@ async function testCreateCollection() {
           "rightID": 2
         }
       ],
-      "Collection_Creator": "EEE",
+      "Collection_CreatorID": 2,
+      "OwnerIdArray": [
+        1, 
+        2  
+      ],
     };
 
     const response = await axios.post(`${baseURL}/collection`, newCollection, {

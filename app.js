@@ -6,7 +6,8 @@ const routesCreator = require('./api/routes/routes_CREATOR');
 const routesCollection = require('./api/routes/routes_COLLECTION');
 const routesBeneficiary = require('./api/routes/routes_BENEFICIARY'); 
 const routesRight = require('./api/routes/routes_RIGHT'); 
-
+const routesBeneficiaryRight = require('./api/routes/routes_BENEFICIARYRIGHT'); 
+const routesNFTRIGHT = require('./api/routes/routes_NFTRIGHT'); 
 //const apiAuthMiddleware = require('./middleware/apiAuthMiddleware'); // Importez votre middleware ici
 //const apiAuthMiddleware2 = require('./middleware/apiAuthMiddleware2'); // Importez votre middleware ici
 // Middleware global pour vérifier la clé API
@@ -21,6 +22,8 @@ app.use('/api', routesCreator);
 app.use('/api', routesCollection);
 app.use('/api', routesBeneficiary);
 app.use('/api', routesRight);
+app.use('/api', routesBeneficiaryRight);
+app.use('/api', routesNFTRIGHT);
 
 //Lancement de l'API
 const PORT = process.env.PORT || 3000;
