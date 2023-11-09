@@ -4,7 +4,7 @@ const controller = require('../controller/controller_COLLECTION');
 const apiAuthMiddlewareC = require('../middleware/apiAuthMiddlewareCreator'); // Importez votre middleware ici
 
 
-// Route pour créer une collection
+// Route pour créer une collection (seulement autorisé pour les créateurs)
 router.post('/collection', apiAuthMiddlewareC.checkKeyPairC, controller.createCollection);
 
 module.exports = router;
