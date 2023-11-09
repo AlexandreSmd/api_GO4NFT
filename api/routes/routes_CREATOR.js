@@ -16,7 +16,7 @@ router.post('/creator', apiAuthMiddlewareA.checkKeyPairA, controller.createCreat
 
 // Route pour rajouter des crédits à un créateur (seulement autorisé pour les administrator)
 router.put('/creator/:id2/C', apiAuthMiddlewareA.checkKeyPairA, controller.updateCCreator);
-r
+
 // Route pour changer le nom d'un créateur (seulement autorisé pour les créateurs)
 router.put('/creator/:id/name', apiAuthMiddlewareC.checkKeyPairC, controller.updateNameCreator);
 

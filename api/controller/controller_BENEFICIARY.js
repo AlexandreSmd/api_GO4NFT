@@ -36,7 +36,36 @@ const getETHAdressFromID = async (req, res) => {
   }
 };
 
+
+
+// Méthode PUT pour mettre à jour un créateur
+const updateEthAdress = async (req, res) => {
+  const { Beneficiary_ETHAdress} = req.body;
+  const beneficiaryId = req.params.id; // Supposons que vous obtenez l'ID du créateur à partir de la route
+  try {
+    const results = await db.promise().query(
+      'UPDATE BENEFICIARY SET Beneficiary_ETHAdress = ? WHERE Beneficiary_ID = ?',
+      [Beneficiary_ETHAdress, beneficiaryId]
+    );
+
+
+    if (results[0] && results[0].affectedRows !== undefined) {
+      if (results[0].affectedRows > 0) {
+        res.status(200).json({ message: 'Adress eth du beneficiaire mis à jour avec succès', id: creatorId });
+      } else {
+        res.status(404).json({ error: 'Beneficaire non trouvé' });
+      }
+    } else {
+      res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du beneficiaire' });
+    }
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du bénéficaire :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du bénéficaire' });
+  }
+};
+
 module.exports = {
   createBeneficiary,
   getETHAdressFromID,
+  updateEthAdress,
 };
