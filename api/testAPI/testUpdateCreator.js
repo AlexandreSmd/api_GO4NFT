@@ -24,6 +24,7 @@ async function testUpdateCreator() {
       headers: {
         'x-keypub': keypub,
         'x-keyprv': keyprv,
+        'x-actor': "ADMINISTRATOR",
       },
     });
 

@@ -1,12 +1,16 @@
 const db = require('./connectDB');
 
 // Middleware pour vérifier la clé publique (Creator_keypub) et privée (Creator_keyprv)
-const checkKeyPair = async (req, res, next) => {
+const checkKeyPairC = async (req, res, next) => {
   const keypub = req.headers['x-keypub']; // Récupérez la clé publique à partir des en-têtes
   const keyprv = req.headers['x-keyprv']; // Récupérez la clé privée à partir des en-têtes
-
+  const actor = req.headers['x-actor'];
   if (!keypub || !keyprv) {
     return res.status(401).json({ error: 'Clé publique ou privée manquante' });
+  }
+  
+  if (actor != 'CREATOR') {
+    return res.status(401).json({error : 'mauvais actor'})
   }
 
   try {
@@ -28,5 +32,5 @@ const checkKeyPair = async (req, res, next) => {
 };
 
 module.exports = {
-  checkKeyPair,
+  checkKeyPairC,
 };

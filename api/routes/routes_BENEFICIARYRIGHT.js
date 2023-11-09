@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controller/controller_BENEFICIARYRIGHT');
-const apiAuthMiddleware = require('../middleware/apiAuthMiddlewareCreator');
+const apiAuthMiddlewareG = require('../middleware/apiAuthMiddlewareGlobal');
 
 // Route pour créer un créateur (seulement autorisé pour les administrator)
-router.get('/beneficiaryright/:id', apiAuthMiddleware.checkKeyPair, controller.getRightsByBeneficiaryID);
+router.get('/beneficiaryright/:id', apiAuthMiddlewareG.checkKeyPairG, controller.getRightsByBeneficiaryID);
 
 module.exports = router;

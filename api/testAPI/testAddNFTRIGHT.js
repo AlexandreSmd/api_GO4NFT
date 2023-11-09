@@ -17,6 +17,7 @@ async function testCreateNFTRight() {
 
     const response = await axios.post(`${baseURL}/NFTTORIGHT`, newNFTRight, {
       headers: {
+        'x-actor' : 'CREATOR',
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },

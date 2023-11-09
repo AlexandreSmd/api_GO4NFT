@@ -40,6 +40,7 @@ async function testCreateCollection() {
 
     const response = await axios.post(`${baseURL}/collection`, newCollection, {
       headers: {
+        'x-actor' : 'CREATOR',
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },

@@ -14,6 +14,7 @@ async function testGetRightsByBeneficiaryID() {
 
     const response = await axios.get(`${baseURL}/beneficiaryright/${beneficiaryID}`, {
       headers: {
+        'x-actor' : 'CREATOR',
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },

@@ -34,12 +34,12 @@ const getOneCreatorNameByID = async (req, res) => {
 
 // Méthode POST pour créer un créateur
 const createCreator = async (req, res) => {
-  const { Creator_Name, Creator_keypub, Creator_keyprv, Creator_IDOfCollection } = req.body; // Les données sont extraites du corps de la requête
+  const { Creator_Name, Creator_keypub, Creator_keyprv} = req.body; // Les données sont extraites du corps de la requête
 
   try {
     const result = await db.promise().query(
-      'INSERT INTO CREATOR (Creator_Name, Creator_keypub, Creator_keyprv, Creator_IDOfCollection) VALUES (?, ?, ?, ?)',
-      [Creator_Name, Creator_keypub, Creator_keyprv, Creator_IDOfCollection]
+      'INSERT INTO CREATOR (Creator_Name, Creator_keypub, Creator_keyprv) VALUES (?, ?, ?)',
+      [Creator_Name, Creator_keypub, Creator_keyprv]
     );
 
     res.status(201).json({ message: 'Créateur ajouté avec succès', id: result.insertId });

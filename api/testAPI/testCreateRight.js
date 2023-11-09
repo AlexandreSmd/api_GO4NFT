@@ -11,11 +11,12 @@ const keyprv = '123';
 async function testCreateRight() {
   try {
     const newRight = {
-      Right_Name: 'AAAAAAAAAAAAA Right',
+      Right_Name: 'BB AAAAAAAAAAAAA Right',
     };
 
     const response = await axios.post(`${baseURL}/right`, newRight, {
       headers: {
+        'x-actor' : 'CREATOR',
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },

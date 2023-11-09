@@ -11,14 +11,14 @@ const keyprv = '123';
 async function testCreateCreator() {
   try {
     const newCreator = {
-      Creator_Name: 'Gus',
-      Creator_keypub: '1234556',
-      Creator_keyprv: '487375',
-      Creator_IDOfCollection: 47, // L'ID de la collection associée
+      Creator_Name: 'Guuus',
+      Creator_keypub: '12234556',
+      Creator_keyprv: '4872375',
     };
 
     const response = await axios.post(`${baseURL}/creator`, newCreator, {
       headers: {
+        'x-actor' : 'ADMINISTRATOR',
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },

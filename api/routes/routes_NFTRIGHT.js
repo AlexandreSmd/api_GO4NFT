@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controller/controller_NFTRIGHT');
-const apiAuthMiddleware = require('../middleware/apiAuthMiddlewareCreator');
+const apiAuthMiddlewareC = require('../middleware/apiAuthMiddlewareCreator');
 
 // Route pour ajouter une ligne à la table NFTRIGHT (requiert une authentification)
-router.post('/NFTTORIGHT', apiAuthMiddleware.checkKeyPair, controller.createNFTRight);
+router.post('/NFTTORIGHT', apiAuthMiddlewareC.checkKeyPairC, controller.createNFTRight);
 
 module.exports = router;

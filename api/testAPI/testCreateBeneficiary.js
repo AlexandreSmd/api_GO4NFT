@@ -19,6 +19,7 @@ async function testCreateBeneficiary() {
 
     const response = await axios.post(`${baseURL}/beneficiary`, newBeneficiary, {
       headers: {
+        'x-actor' : 'ADMINISTRATOR',
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },

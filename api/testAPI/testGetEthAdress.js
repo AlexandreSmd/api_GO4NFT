@@ -12,6 +12,7 @@ async function testGetETHAddressFromID(beneficiaryId) {
   try {
     const response = await axios.get(`${baseURL}/beneficiary/${beneficiaryId}`, {
       headers: {
+        'x-actor' : 'CREATOR',
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },

@@ -22,6 +22,7 @@ async function testUpdateCCreator() {
 
     const response = await axios.put(`${baseURL}/creator/${creatorIdToUpdate}/C`, updatedCreator, {
       headers: {
+        'x-actor': "ADMINISTRATOR",
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },
