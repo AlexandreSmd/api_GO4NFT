@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 // Importez vos routes ici
 const routesCreator = require('./api/routes/routes_CREATOR'); 
@@ -8,12 +9,6 @@ const routesBeneficiary = require('./api/routes/routes_BENEFICIARY');
 const routesRight = require('./api/routes/routes_RIGHT'); 
 const routesBeneficiaryRight = require('./api/routes/routes_BENEFICIARYRIGHT'); 
 const routesNFTRIGHT = require('./api/routes/routes_NFTRIGHT'); 
-//const apiAuthMiddleware = require('./middleware/apiAuthMiddleware'); // Importez votre middleware ici
-//const apiAuthMiddleware2 = require('./middleware/apiAuthMiddleware2'); // Importez votre middleware ici
-// Middleware global pour vérifier la clé API
-//app.use(apiAuthMiddleware.checkKeyPair);
-//app.use(apiAuthMiddleware2.checkKeyPair2);
-
 
 app.use(express.json());
 
@@ -27,6 +22,9 @@ app.use('/api', routesNFTRIGHT);
 
 //Lancement de l'API
 const PORT = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, 'frontend')));
+
 app.listen(PORT, () => {
   console.log(`Serveur en cours d'exécution sur le port ${PORT}`);
 });

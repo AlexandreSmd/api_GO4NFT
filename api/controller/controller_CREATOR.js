@@ -11,6 +11,20 @@ const getAllCreators = async (req, res) => {
   }
 };
 
+
+
+// Méthode GET pour obtenir tous les nom des créateurs
+const getAllCreatorName = async (req, res) => {
+  try {
+    const creators = await db.promise().query('SELECT Creator_name FROM CREATOR');
+    res.json(creators);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des nom de créateurs :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
+
 // Méthode GET pour obtenir un créateur par son ID
 const getOneCreatorNameByID = async (req, res) => {
   const creatorId = req.params.id; // L'ID est extrait des paramètres de l'URL
@@ -115,4 +129,5 @@ module.exports = {
   createCreator,
   updateNameCreator,
   updateCCreator,
+  getAllCreatorName,
 };

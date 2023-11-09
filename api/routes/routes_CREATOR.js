@@ -6,10 +6,13 @@ const apiAuthMiddlewareA = require('../middleware/apiAuthMiddlewareAdministrator
 const apiAuthMiddlewareG = require('../middleware/apiAuthMiddlewareGlobal');
 
 // Route pour obtenir tous les créateurs (autorisé pour tout le monde)
-router.get('/creator', apiAuthMiddlewareG.checkKeyPairG, controller.getAllCreators);
+router.get('/creator', apiAuthMiddlewareA.checkKeyPairA, controller.getAllCreators);
 
 // Route pour obtenir un créateur par son ID (autorisé pour tout le monde)
 router.get('/creator/:id', apiAuthMiddlewareG.checkKeyPairG, controller.getOneCreatorNameByID);
+
+// Route pour obtenir un créateur par son ID (autorisé pour tout le monde)
+router.get('/creator/getallCreatorName', apiAuthMiddlewareG.checkKeyPairG, controller.getAllCreatorName);
 
 // Route pour créer un créateur (seulement autorisé pour les administrator)
 router.post('/creator', apiAuthMiddlewareA.checkKeyPairA, controller.createCreator);
