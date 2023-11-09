@@ -20,13 +20,13 @@ async function testCreateCollection() {
       ],"metadataArray": [
         {
           "name": "NFT 1",
-          "description": "ça marche !!!",
+          "description": "Ceci est un dragon",
           "image": "lien_image_1",
           "rightID": 2
         },
         {
           "name": "NFT 2",
-          "description": "Description du NFT 2",
+          "description": "Ceci est une licorne",
           "image": "lien_image_2",
           "rightID": 2
         }

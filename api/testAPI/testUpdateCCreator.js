@@ -10,29 +10,29 @@ const keyprv = '123';
 // ID du créateur que vous souhaitez mettre à jour
 const creatorIdToUpdate = 1; // Remplacez par l'ID du créateur que vous souhaitez mettre à jour
 
-// Nouveau nom du créateur
-const updatedCreatorName = 'Nouveau Nom'; // Remplacez par le nouveau nom que vous souhaitez définir
+// Montant à ajouter au crédit du créateur
+const C_add = 10; // Remplacez par le montant que vous souhaitez ajouter
 
-// Fonction de test pour mettre à jour un créateur
-async function testUpdateCreator() {
+// Fonction de test pour mettre à jour le crédit d'un créateur
+async function testUpdateCCreator() {
   try {
     const updatedCreator = {
-      Creator_Name: updatedCreatorName,
+      Creator_C_add: C_add,
     };
 
-    const response = await axios.put(`${baseURL}/creator/${creatorIdToUpdate}/name`, updatedCreator, {
+    const response = await axios.put(`${baseURL}/creator/${creatorIdToUpdate}/C`, updatedCreator, {
       headers: {
         'x-keypub': keypub,
         'x-keyprv': keyprv,
       },
     });
 
-    console.log('Résultat de la requête PUT /creator :');
+    console.log('Résultat de la requête PUT /creator/C :');
     console.log(response.data);
   } catch (error) {
-    console.error('Erreur lors de la requête PUT /creator :', error);
+    console.error('Erreur lors de la requête PUT /creator/C :', error);
   }
 }
 
-// Exécutez la fonction de test pour mettre à jour un créateur
-testUpdateCreator();
+// Exécutez la fonction de test pour mettre à jour le crédit d'un créateur
+testUpdateCCreator();

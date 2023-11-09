@@ -76,9 +76,43 @@ const updateNameCreator = async (req, res) => {
 };
 
 
+
+
+// Méthode PUT pour mettre à jour les crédits d'un créateur
+const updateCCreator = async (req, res) => {
+  const {Creator_C_add} = req.body;
+  const creatorId = req.params.id2;
+
+  const [nb] = await db.promise().query('SELECT CREATOR_C FROM CREATOR WHERE Creator_ID = ?', [creatorId]);
+  const a=nb[0].CREATOR_C + Creator_C_add;
+ // Supposons que vous obtenez l'ID du créateur à partir de la route
+  try {
+
+    const results = await db.promise().query(
+      'UPDATE CREATOR SET CREATOR_C = ? WHERE Creator_ID = ?',
+      [a, creatorId]
+    );
+    console.log(results);
+
+    if (results[0] && results[0].affectedRows !== undefined) {
+      if (results[0].affectedRows > 0) {
+        res.status(200).json({ message: 'Créateur mis à jour avec succès', id: creatorId });
+      } else {
+        res.status(404).json({ error: 'Créateur non trouvé' });
+      }
+    } else {
+      res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du créateur' });
+    }
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du créateur :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du créateur' });
+  }
+};
+
 module.exports = {
   getAllCreators,
   getOneCreatorNameByID,
   createCreator,
   updateNameCreator,
+  updateCCreator,
 };

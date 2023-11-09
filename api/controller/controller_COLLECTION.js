@@ -4,6 +4,21 @@ const { mintNFTA } = require('./mint-collection');
 const createCollection = async (req, res) => {
   const { Collection_NumberOfNFT, Collection_Name, Collection_Symbol, metadataArray, recipientAddresses, Collection_CreatorID, OwnerIdArray } = req.body;
 
+
+  const { 'x-keypub': keypub, 'x-keyprv': keyprv } = req.headers;
+  const [nb] = await db.promise().query('SELECT Creator_C FROM CREATOR WHERE Creator_keypub = ? AND Creator_keyprv = ?', [keypub, keyprv]);
+  console.log(nb);
+
+  
+// Vérification du crédit du créateur
+  if (nb[0].Creator_C < Collection_NumberOfNFT) {
+     throw new Error('Le createur n a pas assez de credit');
+} else {
+  // Le créateur a suffisamment de crédit
+  // On diminue le crédit du créateur
+  await db.promise().query('UPDATE CREATOR SET Creator_C = Creator_C - ? WHERE Creator_keypub = ? AND Creator_keyprv = ?', [Collection_NumberOfNFT, keypub, keyprv]);
+}
+
   // Utilisez une variable pour suivre l'état de l'opération
   let operationSuccessful = false;
 

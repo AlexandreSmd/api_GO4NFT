@@ -13,6 +13,10 @@ router.get('/creator/:id', apiAuthMiddleware.checkKeyPair, controller.getOneCrea
 // Route pour créer un créateur (seulement autorisé pour les administrator)
 router.post('/creator', apiAuthMiddleware2.checkKeyPair2, controller.createCreator);
 
-router.put('/creator/:id', apiAuthMiddleware.checkKeyPair, controller.updateNameCreator);
+router.put('/creator/:id2/C', apiAuthMiddleware.checkKeyPair, controller.updateCCreator);
+
+router.put('/creator/:id/name', apiAuthMiddleware.checkKeyPair, controller.updateNameCreator);
+
+
 
 module.exports = router;
