@@ -52,6 +52,7 @@ async function mintNFTA(n, p1, p2, metadataArray, recipientAddresses) {
       console.error("Erreur lors de la création du NFT :", error.message);
     }
   }
+  return contract.address
 }
 
 // Exemple d'utilisation :

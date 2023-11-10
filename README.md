@@ -43,6 +43,5 @@ Lire tt les rights qu'on a en tant que Beneficiaire
 
 
 
+http://localhost:3000
 
-ROAD MAP 
--coder une méthode pour ajouter un nouveau right à un NFT en tant que créator et donc associé chaque NFT et chaque Owner de NFT à ce nouveau right

@@ -23,12 +23,12 @@ const createCollection = async (req, res) => {
   let operationSuccessful = false;
 
   // Appelez la fonction mintNFT avec les arguments souhaités
-  await mintNFTA(Collection_NumberOfNFT, Collection_Name, Collection_Symbol, metadataArray, recipientAddresses);
+  const address = await mintNFTA(Collection_NumberOfNFT, Collection_Name, Collection_Symbol, metadataArray, recipientAddresses);
 
   try {
     const result = await db.promise().query(
-      'INSERT INTO COLLECTION (Collection_Name, Collection_NumberOfNFT, Collection_Creator, Collection_Symbol) VALUES (?, ?, ?, ?)',
-      [Collection_Name, Collection_NumberOfNFT, Collection_CreatorID, Collection_Symbol]
+      'INSERT INTO COLLECTION (Collection_Name, Collection_NumberOfNFT, Collection_Creator, Collection_Symbol,  Collection_Adress) VALUES (?, ?, ?, ?, ?)',
+      [Collection_Name, Collection_NumberOfNFT, Collection_CreatorID, Collection_Symbol, address]
     );
     
     const collectionID = result[0].insertId;

@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer une Collection de NFT</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Créer une Collection de NFT</h1>
-    <div class="form-container">
-        <form id="collection-form">
-            <label for="name">Nom de la Collection:</label>
-            <input type="text" id="name" required>
-            <label for="symbol">Symbole de la Collection:</label>
-            <input type="text" id="symbol" required>
-            <label for="numberOfNFT">Nombre de NFT:</label>
-            <input type="number" id="numberOfNFT" required>
-            <button type="submit">Créer la Collection</button>
-        </form>
-    </div>
-    <div id="response"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script src="app.js"></script>
-</body>
+        <link rel="stylesheet" href="/style.css">
+        
+        <title>API Test</title>
+    </head>
+    <body>
+        <div class="container">
+            <label for="keypub">Clé publique :</label>
+            <input type="text" id="keypub" placeholder="Entrez votre clé publique">
+
+            <label for="keyprv">Clé privée :</label>
+            <input type="text" id="keyprv" placeholder="Entrez votre clé privée">
+
+            <label for="actor">Acteur :</label>
+            <select id="actor">
+            <option value="CREATOR">Créateur</option>
+            <option value="ADMINISTRATOR">Administrateur</option>
+            <option value="BENEFICIARY">Bénéficiaire</option>
+            </select>
+
+            <button onclick="getRights()">Obtenir les droits</button>
+
+            <div id="result"></div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
 </html>
