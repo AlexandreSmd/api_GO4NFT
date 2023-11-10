@@ -18,13 +18,25 @@
             <input type="text" id="keyprv" placeholder="Entrez votre clé privée">
 
             <label for="actor">Acteur :</label>
-            <select id="actor">
+            <select id="actor" onchange="showButtons()">
             <option value="CREATOR">Créateur</option>
             <option value="ADMINISTRATOR">Administrateur</option>
             <option value="BENEFICIARY">Bénéficiaire</option>
             </select>
 
-            <button onclick="getRights()">Obtenir les droits</button>
+            <!-- Boutons spécifiques pour chaque acteur -->
+            <!-- Méthode GET pour obtenir les right d'un bénéficaire n -->
+            <button id="creatorButton_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
+            <button id="adminButton_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
+            <button id="beneficiaryButton_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
+
+            <label for="number" id="numberLabel" style="display: none;">Entrez un nombre (n) :</label>
+            <input type="number" id="number" style="display: none;" placeholder="Entrez un nombre">
+            
+            <!-- Boutons spécifiques pour chaque acteur -->
+            <!-- Méthode GET pour obtenir les right d'un bénéficaire n -->
+
+
 
             <div id="result"></div>
         </div>
