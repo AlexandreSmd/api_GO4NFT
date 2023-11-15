@@ -10,7 +10,7 @@ const keyprv = '123';
 // Fonction de test pour obtenir l'adresse ETH à partir de l'ID du bénéficiaire
 async function testGetAllCreator() {
   try {
-    const response = await axios.get(`${baseURL}/creator`, {
+    const response = await axios.get(`${baseURL}/GetAllcreator`, {
       headers: {
         'x-keypub': keypub,
         'x-keyprv': keyprv,

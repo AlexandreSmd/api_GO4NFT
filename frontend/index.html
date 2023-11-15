@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,23 +25,23 @@
             <option value="BENEFICIARY">Bénéficiaire</option>
             </select>
 
-            <!-- Boutons spécifiques pour chaque acteur -->
-            <!-- Méthode GET pour obtenir les right d'un bénéficaire n -->
-            <button id="creatorButton_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
-            <button id="adminButton_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
-            <button id="beneficiaryButton_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
+            <!-- Boutons pour tous les acteurs -->
+            <button id="Button_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
+            <button id="Button_GetEthAdress" style="display: none;" onclick="getEthAdress()">Obtenir l'adresse eth du bénéficiaire n</button>
+            <button id="Button_GetCreatorNameWithId" style="display: none;" onclick="GetCreatorNameWithId()">Obtenir le nom du creator d'ID = n</button>
 
-            <label for="number" id="numberLabel" style="display: none;">Entrez un nombre (n) :</label>
+            <label for="number" id="numberLabel" style="display: none;">Entrez un nombre n :</label>
             <input type="number" id="number" style="display: none;" placeholder="Entrez un nombre">
-            
-            <!-- Boutons spécifiques pour chaque acteur -->
-            <!-- Méthode GET pour obtenir les right d'un bénéficaire n -->
-
 
 
             <div id="result"></div>
+            <!-- Boutons spécifiques pour chaque acteur -->
+            <button id="adminButton_GetAllCreator" style="display: none;" onclick="getAllCreator()">Obtenir tous les créateurs</button>
+            <button id="Button_GetAllCreatorName" style="display: none;" onclick="GetAllCreatorName()">Obtenir tous les nom de creator</button>
+
+            <div id="result2"></div>
         </div>
 
-        <script src="script.js"></script>
+        <script src="scriptGet.js"></script>
     </body>
 </html>

@@ -5,6 +5,6 @@ const apiAuthMiddlewareC = require('../middleware/apiAuthMiddlewareCreator'); //
 
 
 // Route pour créer une collection (seulement autorisé pour les créateurs)
-router.post('/collection', apiAuthMiddlewareC.checkKeyPairC, controller.createCollection);
+router.post('/Collection/CreateCollection', apiAuthMiddlewareC.checkKeyPairC, controller.createCollection);
 
 module.exports = router;

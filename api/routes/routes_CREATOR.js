@@ -5,23 +5,23 @@ const apiAuthMiddlewareC = require('../middleware/apiAuthMiddlewareCreator'); //
 const apiAuthMiddlewareA = require('../middleware/apiAuthMiddlewareAdministrator');
 const apiAuthMiddlewareG = require('../middleware/apiAuthMiddlewareGlobal');
 
-// Route pour obtenir tous les créateurs (autorisé pour tout le monde)
-router.get('/creator', apiAuthMiddlewareA.checkKeyPairA, controller.getAllCreators);
+// Route pour obtenir tous les créateurs (autorisé pour les admins)
+router.get('/creator/GetAllCreator', apiAuthMiddlewareA.checkKeyPairA, controller.getAllCreators);
 
 // Route pour obtenir un créateur par son ID (autorisé pour tout le monde)
-router.get('/creator/:id', apiAuthMiddlewareG.checkKeyPairG, controller.getOneCreatorNameByID);
+router.get('/creator/GetCreatorNameWithId/:id', apiAuthMiddlewareG.checkKeyPairG, controller.getOneCreatorNameByID);
 
 // Route pour obtenir un créateur par son ID (autorisé pour tout le monde)
-router.get('/creator/getallCreatorName', apiAuthMiddlewareG.checkKeyPairG, controller.getAllCreatorName);
+router.get('/creator/GetAllCreatorName', apiAuthMiddlewareG.checkKeyPairG, controller.getAllCreatorName);
 
 // Route pour créer un créateur (seulement autorisé pour les administrator)
-router.post('/creator', apiAuthMiddlewareA.checkKeyPairA, controller.createCreator);
+router.post('/creator/createCreator', apiAuthMiddlewareA.checkKeyPairA, controller.createCreator);
 
 // Route pour rajouter des crédits à un créateur (seulement autorisé pour les administrator)
-router.put('/creator/:id2/C', apiAuthMiddlewareA.checkKeyPairA, controller.updateCCreator);
+router.put('/creator/UpdateCompteurCreator/:id', apiAuthMiddlewareA.checkKeyPairA, controller.updateCCreator);
 
 // Route pour changer le nom d'un créateur (seulement autorisé pour les créateurs)
-router.put('/creator/:id/name', apiAuthMiddlewareC.checkKeyPairC, controller.updateNameCreator);
+router.put('/creator/UpdateCreatorName/:id', apiAuthMiddlewareC.checkKeyPairC, controller.updateNameCreator);
 
 
 
