@@ -17,6 +17,19 @@ const createRight = async (req, res) => {
   }
 };
 
+
+// Méthode GET pour obtenir tous les rights qui existe
+const getAllRights = async (req, res) => {
+  try {
+    const rights = await db.promise().query('SELECT * FROM rights');
+    res.json(rights);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des créateurs :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
 module.exports = {
   createRight,
+  getAllRights
 };

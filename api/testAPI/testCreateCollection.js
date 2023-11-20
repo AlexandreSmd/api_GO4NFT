@@ -38,7 +38,7 @@ async function testCreateCollection() {
       ],
     };
 
-    const response = await axios.post(`${baseURL}/collection`, newCollection, {
+    const response = await axios.post(`${baseURL}/Collection/CreateCollection`, newCollection, {
       headers: {
         'x-actor' : 'CREATOR',
         'x-keypub': keypub,

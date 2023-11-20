@@ -64,8 +64,23 @@ const updateEthAdress = async (req, res) => {
   }
 };
 
+
+// Méthode GET pour obtenir tous les créateurs
+const getAllBeneficiary = async (req, res) => {
+  try {
+    const creators = await db.promise().query('SELECT * FROM BENEFICIARY');
+    res.json(creators);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des bénéficiaires :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
+
+
 module.exports = {
   createBeneficiary,
   getETHAdressFromID,
   updateEthAdress,
+  getAllBeneficiary,
 };

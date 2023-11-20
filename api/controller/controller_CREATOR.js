@@ -13,6 +13,7 @@ const getAllCreators = async (req, res) => {
 
 
 
+
 // Méthode GET pour obtenir tous les nom des créateurs
 const getAllCreatorName = async (req, res) => {
   try {

@@ -75,6 +75,48 @@ const createCollection = async (req, res) => {
   // L'opération a réussi, renvoyez une réponse réussie
   return res.status(201).json({ message: 'Collection ajoutée avec succès' });
 };
+
+
+
+// Méthode GET pour obtenir tous les rights qui existe
+const getAllCollection = async (req, res) => {
+  try {
+    const collection = await db.promise().query('SELECT * FROM COLLECTION');
+    res.json(collection);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des collections :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
+
+
+// Méthode GET pour obtenir tous les NFTs d'une collection avec vérification d'existence de la collection
+const getAllNftByIDCollection = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    // Vérifier si la collection existe
+    const [collection] = await db.promise().query('SELECT * FROM COLLECTION WHERE Collection_ID = ?', id);
+
+    if (collection.length === 0) {
+      // Si la collection n'existe pas, renvoyer une erreur
+      res.status(404).json({ error: 'Collection inexistante' });
+      return;
+    }
+
+    // Si la collection existe, récupérer les NFTs associés
+    const NFTs = await db.promise().query('SELECT * FROM NFT WHERE NFT_CollectionID = ?', [id]);
+    res.json(NFTs[0]);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des collections ou des NFTs :', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
+
 module.exports = {
+  getAllCollection,
   createCollection,
+  getAllNftByIDCollection,
 };

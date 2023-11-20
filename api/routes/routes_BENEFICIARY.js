@@ -14,4 +14,7 @@ router.get('/beneficiary/GetEthAddressOfBeneficiary/:id', apiAuthMiddlewareG.che
 //Route pour mettre à jour l'address eth en tant que beneficaire
 router.put('/beneficiary/UpdateBeneficiaryEthAddress/:id', apiAuthMiddlewareB.checkKeyPairB, controller.updateEthAdress);
 
+// Route pour obtenir tous les infos des bénéficaires (autorisé pour tout les admins)
+router.get('/beneficiary/GetAllBeneficiary', apiAuthMiddlewareA.checkKeyPairA, controller.getAllBeneficiary);
+
 module.exports = router;

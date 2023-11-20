@@ -41,6 +41,9 @@ const createNFTRight = async (req, res) => {
   }
 };
 
+
+
+
 module.exports = {
   createNFTRight,
 };
