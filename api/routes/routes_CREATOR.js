@@ -23,6 +23,8 @@ router.put('/creator/UpdateCompteurCreator/:id', apiAuthMiddlewareA.checkKeyPair
 // Route pour changer le nom d'un créateur (seulement autorisé pour les créateurs)
 router.put('/creator/UpdateCreatorName/:id', apiAuthMiddlewareC.checkKeyPairC, controller.updateNameCreator);
 
+//Route pour voir si le créateur id existe (1 si oui 0 sinon)
+router.get('/creator/ifCreatorExist/:id', apiAuthMiddlewareA.checkKeyPairA, controller.ifCreatorExist);
 
 
 module.exports = router;

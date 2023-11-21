@@ -91,22 +91,27 @@ const updateNameCreator = async (req, res) => {
 };
 
 
-
-
 // Méthode PUT pour mettre à jour les crédits d'un créateur
 const updateCCreator = async (req, res) => {
-  const {Creator_C_add} = req.body;
+  const { Creator_C_add } = req.body;
   const creatorId = req.params.id;
 
-  const [nb] = await db.promise().query('SELECT CREATOR_C FROM CREATOR WHERE Creator_ID = ?', [creatorId]);
-  const a = nb[0].CREATOR_C + Creator_C_add;
- // Supposons que vous obtenez l'ID du créateur à partir de la route
-  try {
+  // Vérifier si le créateur existe
+  const [creator] = await db.promise().query('SELECT * FROM CREATOR WHERE Creator_ID = ?', [creatorId]);
 
+  if (!creator || creator.length === 0) {
+    return res.status(404).json({ error: 'Créateur inexistant' });
+  }
+
+  const currentCCreator = creator[0].CREATOR_C;
+  const newCCreator = currentCCreator + Creator_C_add;
+
+  try {
     const results = await db.promise().query(
       'UPDATE CREATOR SET CREATOR_C = ? WHERE Creator_ID = ?',
-      [a, creatorId]
+      [newCCreator, creatorId]
     );
+
     console.log(results);
 
     if (results[0] && results[0].affectedRows !== undefined) {
@@ -124,6 +129,25 @@ const updateCCreator = async (req, res) => {
   }
 };
 
+// Méthode GET pour voir si un créateur existe.
+const ifCreatorExist = async (req, res) => {
+  try {
+      const creatorId = req.params.id;
+      const [creator] = await db.promise().query('SELECT * FROM CREATOR WHERE Creator_ID = ?', [creatorId]);
+
+      if (!creator || creator.length === 0) {
+          res.status(404).json({ exists: false });
+      } else {
+          res.status(200).json({ exists: true });
+      }
+  } catch (error) {
+      console.error('Erreur lors de la récupération des noms de créateurs :', error);
+      res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+  }
+};
+
+
+
 module.exports = {
   getAllCreators,
   getOneCreatorNameByID,
@@ -131,4 +155,5 @@ module.exports = {
   updateNameCreator,
   updateCCreator,
   getAllCreatorName,
+  ifCreatorExist,
 };

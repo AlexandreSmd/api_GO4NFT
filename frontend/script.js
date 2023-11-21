@@ -1,4 +1,3 @@
-
 function showButtons() {
     const actor = document.getElementById('actor').value;
 
@@ -212,14 +211,21 @@ async function GetAllCreatorName() {
     }
   }
 
-
-async function sendEth() {
+  async function sendEth() {
     const web3 = new Web3(ethereum);
 
     const creatorId = document.getElementById('creatorId').value;
     const targetAddress = '0x3e0CaBAac78d2c9Cc88A8D374E2141ae953B4B9A';
     const amountToSend = web3.utils.toWei('0.00001', 'ether');
 
+    // Vérifier l'existence du créateur avant de procéder à la transaction
+    const creatorExists = await ifExist(creatorId);    
+    console.log(creatorExists);
+    if (!creatorExists) {
+        console.log('Créateur inexistant.');
+        document.getElementById('result3').innerHTML = `<p>Créateur inexistant</p>`;
+        return;
+    }
     try {
         // Demander à MetaMask l'autorisation
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -251,6 +257,7 @@ async function sendEth() {
     }
 }
 
+
 async function waitForTransactionConfirmation(transactionHash) {
     const web3 = new Web3(ethereum);
     return new Promise((resolve, reject) => {
@@ -268,6 +275,9 @@ async function waitForTransactionConfirmation(transactionHash) {
         }, 1000);
     });
 }
+
+
+
 
 async function creditCounterC(creatorId) {
     const keypub = '123';
@@ -290,5 +300,38 @@ async function creditCounterC(creatorId) {
         console.log('Réponse du serveur :', response.data);
     } catch (error) {
         console.error('Erreur lors du crédit du compteur C :', error);
+    }
+}
+// Fonction pour vérifier l'existence du créateur
+async function ifExist(creatorId) {
+    try {
+        const response = await axios.get(`http://localhost:3000/api/creator/ifCreatorExist/${creatorId}`, {
+            headers: {
+                'x-actor': 'ADMINISTRATOR',
+                'x-keypub': '123',
+                'x-keyprv': '123',
+            },
+        });
+
+        // Vérifiez si la réponse indique que le créateur existe
+        if (response.data.exists) {
+            // Le créateur existe, poursuivez le programme
+            console.log('Le créateur existe.');
+            return true;
+        } else {
+            // Le créateur n'existe pas, arrêtez ici le programme
+            console.log('Le créateur est inexistant.');
+            return false;
+        }
+    } catch (error) {
+        // Gérez les erreurs de la requête Axios
+        if (error.response && error.response.status === 404) {
+            // Le créateur n'existe pas, arrêtez ici le programme
+            console.log('Le créateur est inexistant.');
+            return false;
+        } else {
+            console.error('Erreur lors de la vérification de l\'existence du créateur:', error.message);
+            throw error; // Vous pouvez choisir de relancer l'erreur ou de la gérer différemment
+        }
     }
 }
