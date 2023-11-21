@@ -20,7 +20,7 @@ async function testUpdateCCreator() {
       Creator_C_add: C_add,
     };
 
-    const response = await axios.put(`${baseURL}/creator/${creatorIdToUpdate}/C`, updatedCreator, {
+    const response = await axios.put(`${baseURL}/creator/UpdateCompteurCreator/${creatorIdToUpdate}`, updatedCreator, {
       headers: {
         'x-actor': "ADMINISTRATOR",
         'x-keypub': keypub,

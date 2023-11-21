@@ -211,3 +211,84 @@ async function GetAllCreatorName() {
         }
     }
   }
+
+
+async function sendEth() {
+    const web3 = new Web3(ethereum);
+
+    const creatorId = document.getElementById('creatorId').value;
+    const targetAddress = '0x3e0CaBAac78d2c9Cc88A8D374E2141ae953B4B9A';
+    const amountToSend = web3.utils.toWei('0.00001', 'ether');
+
+    try {
+        // Demander à MetaMask l'autorisation
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const fromAddress = accounts[0];
+
+        // Construire la transaction
+        const transactionParameters = {
+            from: fromAddress,
+            to: targetAddress,
+            value: amountToSend,
+        };
+
+        // Envoyer la transaction
+        const transactionHash = await window.ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [transactionParameters],
+        });
+
+        // Attendre la confirmation de la transaction
+        await waitForTransactionConfirmation(transactionHash);
+
+        // Une fois la transaction confirmée, créditer le compteur C
+        await creditCounterC(creatorId);
+
+        document.getElementById('result3').innerHTML = `<p>Transaction réussie !</p>`;
+    } catch (error) {
+        console.error('Erreur lors de la transaction :', error);
+        document.getElementById('result3').innerHTML = `<p>Erreur lors de la transaction : ${error.message}</p>`;
+    }
+}
+
+async function waitForTransactionConfirmation(transactionHash) {
+    const web3 = new Web3(ethereum);
+    return new Promise((resolve, reject) => {
+        const intervalId = setInterval(async () => {
+            try {
+                const receipt = await web3.eth.getTransactionReceipt(transactionHash);
+                if (receipt && receipt.blockNumber) {
+                    clearInterval(intervalId);
+                    resolve();
+                }
+            } catch (error) {
+                clearInterval(intervalId);
+                reject(error);
+            }
+        }, 1000);
+    });
+}
+
+async function creditCounterC(creatorId) {
+    const keypub = '123';
+    const keyprv = '123';
+    // Vous devez implémenter la logique pour créditer le compteur C côté serveur
+    // Utilisez une requête Axios pour appeler l'API qui gère cela
+    try {
+        const updatedCreator = {
+            Creator_C_add: 10,
+          };
+
+        const response = await axios.put(`http://localhost:3000/api/creator/UpdateCompteurCreator/${creatorId}`, updatedCreator , {
+            headers: {
+              'x-keypub': keypub,
+              'x-keyprv': keyprv,
+              'x-actor': "ADMINISTRATOR",
+            },
+          });
+
+        console.log('Réponse du serveur :', response.data);
+    } catch (error) {
+        console.error('Erreur lors du crédit du compteur C :', error);
+    }
+}

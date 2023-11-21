@@ -96,10 +96,10 @@ const updateNameCreator = async (req, res) => {
 // Méthode PUT pour mettre à jour les crédits d'un créateur
 const updateCCreator = async (req, res) => {
   const {Creator_C_add} = req.body;
-  const creatorId = req.params.id2;
+  const creatorId = req.params.id;
 
   const [nb] = await db.promise().query('SELECT CREATOR_C FROM CREATOR WHERE Creator_ID = ?', [creatorId]);
-  const a=nb[0].CREATOR_C + Creator_C_add;
+  const a = nb[0].CREATOR_C + Creator_C_add;
  // Supposons que vous obtenez l'ID du créateur à partir de la route
   try {
 
