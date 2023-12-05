@@ -335,3 +335,62 @@ async function ifExist(creatorId) {
         }
     }
 }
+
+
+function comeback() {
+    // Réinitialiser les champs de saisie
+    document.getElementById('keypub').value = '';
+    document.getElementById('keyprv').value = '';
+    document.getElementById('actor').value = '';
+    document.getElementById('number').value = '';
+    document.getElementById('creatorId').value = '';
+
+    // Masquer tous les boutons et le champ de saisie
+    document.getElementById('Button_GetRights').style.display = 'none';
+    document.getElementById('adminButton_GetAllCreator').style.display = 'none';
+    document.getElementById('Button_GetEthAdress').style.display = 'none';
+    document.getElementById('Button_GetAllCreatorName').style.display = 'none';
+    document.getElementById('numberLabel').style.display = 'none';
+    document.getElementById('number').style.display = 'none';
+
+    // Réinitialiser les résultats
+    document.getElementById('result').innerHTML = '';
+    document.getElementById('result2').innerHTML = '';
+    document.getElementById('result3').innerHTML = '';
+
+    // Afficher le champ de saisie uniquement si l'acteur est sélectionné
+    document.getElementById('numberLabel').style.display = 'block';
+    document.getElementById('number').style.display = 'block';
+}
+
+
+function downloadPDF() {
+    // Créez le chemin vers votre fichier PDF
+    const pdfPath = 'pdf/pdftest.pdf';
+
+    // Générez une URL pour le fichier PDF
+    const url = pdfPath;
+
+    // Créez un élément <a> pour le téléchargement
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mon_fichier.pdf'; // Nom du fichier PDF à télécharger
+
+    // Ajoutez l'élément <a> à la page
+    document.body.appendChild(a);
+
+    // Cliquez sur l'élément <a> pour déclencher le téléchargement
+    a.click();
+
+    // Retirez l'élément <a> de la page
+    document.body.removeChild(a);
+}
+
+function redirectToEtherscan() {
+    window.location.href = "https://etherscan.io/";
+}
+
+
+function redirectToOpenSea() {
+    window.location.href = "https://opensea.io/";
+}

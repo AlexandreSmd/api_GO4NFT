@@ -13,40 +13,52 @@
     </head>
     <body>
         <h1>GO4NFT</h1>
+        <button id="comebackButton" style="background-color: #FF0000; color: white;" onclick="comeback()">Back to the initial website</button>
+        <button id="pdfButton" onclick="downloadPDF()">Download the PDF documentation</button>
+
         <img src="picture/nft-singes.jpg" alt="Image de gauche" class="image-gauche">
         <div class="container">
-            <label for="keypub">Clé publique :</label>
-            <input type="text" id="keypub" placeholder="Entrez votre clé publique">
+            <label for="keypub">Public key :</label>
+            <input type="text" id="keypub" placeholder="Get your public key">
 
-            <label for="keyprv">Clé privée :</label>
-            <input type="text" id="keyprv" placeholder="Entrez votre clé privée">
+            <label for="keyprv">Private key:</label>
+            <input type="text" id="keyprv" placeholder="Get your private key">
 
             <label for="actor">Acteur :</label>
             <select id="actor" onchange="showButtons()">
-            <option value="CREATOR">Créateur</option>
-            <option value="ADMINISTRATOR">Administrateur</option>
-            <option value="BENEFICIARY">Bénéficiaire</option>
+            <option value="CREATOR">Creator</option>
+            <option value="ADMINISTRATOR">Administrator</option>
+            <option value="BENEFICIARY">Beneficiary</option>
             </select>
 
             <!-- Boutons pour tous les acteurs -->
-            <button id="Button_GetRights" style="display: none;" onclick="getRights()">Obtenir les droits du bénéficiaire n</button>
-            <button id="Button_GetEthAdress" style="display: none;" onclick="getEthAdress()">Obtenir l'adresse eth du bénéficiaire n</button>
-            <button id="Button_GetCreatorNameWithId" style="display: none;" onclick="GetCreatorNameWithId()">Obtenir le nom du creator d'ID = n</button>
-            <label for="number" id="numberLabel" style="display: none;">Entrez un nombre n :</label>
-            <input type="number" id="number" style="display: none;" placeholder="Entrez un nombre">
+            <button id="Button_GetRights" style="display: none;" onclick="getRights()">Get rights of beneficiary n</button>
+            <button id="Button_GetEthAdress" style="display: none;" onclick="getEthAdress()">get ethereum adress of beneficiary n</button>
+            <button id="Button_GetCreatorNameWithId" style="display: none;" onclick="GetCreatorNameWithId()">get creator's name of creator n</button>
+            <label for="number" id="numberLabel" style="display: none;">Put a number n</label>
+            <input type="number" id="number" style="display: none;" placeholder="Put a number n ">
             <div id="result" class="styled-result"></div>
 
-            <button id="adminButton_GetAllCreator" style="display: none;" onclick="getAllCreator()">Obtenir tous les créateurs</button>
-            <button id="Button_GetAllCreatorName" style="display: none;" onclick="GetAllCreatorName()">Obtenir tous les nom de creator</button>
+            <button id="adminButton_GetAllCreator" style="display: none;" onclick="getAllCreator()">Get all creator</button>
+            <button id="Button_GetAllCreatorName" style="display: none;" onclick="GetAllCreatorName()">get all creator's name</button>
             <div id="result2" class="styled-result"></div>
 
 
-            <label for="creatorId">ID du créateur :</label>
-            <input type="text" id="creatorId" placeholder="Entrez votre ID de créateur">
-            <button id="payButton" onclick="sendEth()">Effectuer la transaction</button>
+            <label for="creatorId">Creator's ID :</label>
+            <input type="text" id="creatorId" placeholder="Put your creator's ID">
+            <button id="payButton" onclick="sendEth()">Complete the transaction</button>
             <div id="result3" class="styled-result"></div>
         </div>
         <img src="picture/nft-singes2.jpg" alt="Image de droite" class="image-droite">
         <script src="script.js"></script>
+
+        <div class="button-container">
+            <!-- Bouton pour rediriger vers "https://etherscan.io/" -->
+            <button id="redirectButton" onclick="redirectToEtherscan()">Go to Etherscan</button>
+
+            <!-- Bouton pour rediriger vers "https://opensea.io/" -->
+            <button id="openSeaButton" onclick="redirectToOpenSea()">Go to OpenSea</button>
+        </div>
+
     </body>
 </html>

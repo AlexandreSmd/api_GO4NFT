@@ -98,3 +98,53 @@ button:hover {
 .image-droite {
   right: 2cm;
 }
+
+
+#pdfButton {
+  background-color: #add8e6; /* Bleu pâle */
+  color: #000; /* Couleur du texte */
+  font-size: 12px; /* Taille de la police */
+  padding: 5px 10px; /* Espacement intérieur du bouton */
+  border: none; /* Supprimer la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer;
+  position: fixed;
+  bottom: 10px; /* Distance depuis le bas */
+  right: 10px; /* Distance depuis la droite */
+  display: inline-block;
+  width: 200px; /* Largeur fixe du bouton */
+}
+
+/* Style pour le conteneur des boutons */
+.button-container {
+  position: fixed;
+  bottom: 10px; /* Distance depuis le bas */
+  left: 10px; /* Distance depuis la gauche */
+}
+
+/* Style pour le bouton de redirection vers Etherscan */
+#redirectButton {
+  background-color: #add8e6; /* Bleu pâle */
+  color: #000; /* Couleur du texte */
+  font-size: 12px; /* Taille de la police */
+  padding: 5px 10px; /* Espacement intérieur du bouton */
+  border: none; /* Supprimer la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer;
+  margin-right: 0.5cm; /* Distance entre les boutons */
+  display: inline-block;
+  width: 100px; /* Largeur fixe du bouton */
+}
+
+/* Style pour le bouton de redirection vers OpenSea */
+#openSeaButton {
+  background-color: #add8e6; /* Bleu pâle */
+  color: #000; /* Couleur du texte */
+  font-size: 12px; /* Taille de la police */
+  padding: 5px 10px; /* Espacement intérieur du bouton */
+  border: none; /* Supprimer la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer;
+  display: inline-block;
+  width: 100px; /* Largeur fixe du bouton */
+}

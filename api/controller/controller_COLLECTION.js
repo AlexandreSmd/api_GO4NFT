@@ -12,7 +12,7 @@ const createCollection = async (req, res) => {
   
 // Vérification du crédit du créateur
   if (nb[0].Creator_C < Collection_NumberOfNFT) {
-     throw new Error('Le createur n a pas assez de credit');
+     throw new Error('The creator doesn t have enough credit');
 } else {
   // Le créateur a suffisamment de crédit
   // On diminue le crédit du créateur
@@ -64,16 +64,16 @@ const createCollection = async (req, res) => {
     }
     
   } catch (error) {
-    console.error('Erreur lors de l\'insertion des données dans la table COLLECTION :', error);
+    console.error('Error when inserting data in the COLLECTION table:', error);
   }
 
   if (!operationSuccessful) {
     // Si l'opération dans la table COLLECTION n'a pas réussi, renvoyez une réponse d'erreur
-    return res.status(500).json({ error: 'Erreur lors de l\'insertion des données dans la table COLLECTION' });
+    return res.status(500).json({ error: 'Error when inserting data in the COLLECTION table:' });
   }
 
   // L'opération a réussi, renvoyez une réponse réussie
-  return res.status(201).json({ message: 'Collection ajoutée avec succès' });
+  return res.status(201).json({ message: 'Collection successfully added' });
 };
 
 
@@ -84,8 +84,8 @@ const getAllCollection = async (req, res) => {
     const collection = await db.promise().query('SELECT * FROM COLLECTION');
     res.json(collection);
   } catch (error) {
-    console.error('Erreur lors de la récupération des collections :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+    console.error('Error retrieving collections:', error);
+    res.status(500).json({ error: 'Server error during data recovery' });
   }
 };
 
@@ -109,8 +109,8 @@ const getAllNftByIDCollection = async (req, res) => {
     const NFTs = await db.promise().query('SELECT * FROM NFT WHERE NFT_CollectionID = ?', [id]);
     res.json(NFTs[0]);
   } catch (error) {
-    console.error('Erreur lors de la récupération des collections ou des NFTs :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+    console.error('Error when retrieving collections or NFTs :', error);
+    res.status(500).json({ error: 'Server error during data recovery' });
   }
 };
 

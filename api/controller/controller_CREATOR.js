@@ -6,8 +6,8 @@ const getAllCreators = async (req, res) => {
     const creators = await db.promise().query('SELECT * FROM CREATOR');
     res.json(creators);
   } catch (error) {
-    console.error('Erreur lors de la récupération des créateurs :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+    console.error('Error when retrieving creators :', error);
+    res.status(500).json({ error: 'Server error during data recovery' });
   }
 };
 
@@ -20,8 +20,8 @@ const getAllCreatorName = async (req, res) => {
     const creators = await db.promise().query('SELECT Creator_name FROM CREATOR');
     res.json(creators);
   } catch (error) {
-    console.error('Erreur lors de la récupération des nom de créateurs :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+    console.error('Error retrieving creator names :', error);
+    res.status(500).json({ error: 'Server error during data recovery' });
   }
 };
 
@@ -38,11 +38,11 @@ const getOneCreatorNameByID = async (req, res) => {
       const creatorName = rows[0].Creator_Name;
       res.json({ Creator_Name: creatorName });
     } else {
-      res.status(404).json({ error: 'Créateur non trouvé' });
+      res.status(404).json({ error: 'Creator not found' });
     }
   } catch (error) {
-    console.error('Erreur lors de la récupération du nom du créateur :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+    console.error('Error retrieving creator name :', error);
+    res.status(500).json({ error: 'Server error during data recovery' });
   }
 };
 
@@ -57,10 +57,10 @@ const createCreator = async (req, res) => {
       [Creator_Name, Creator_keypub, Creator_keyprv]
     );
 
-    res.status(201).json({ message: 'Créateur ajouté avec succès', id: result.insertId });
+    res.status(201).json({ message: 'Creator successfully added', id: result.insertId });
   } catch (error) {
-    console.error('Erreur lors de la création du créateur :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la création du créateur' });
+    console.error('Error when creating the creator :', error);
+    res.status(500).json({ error: 'Server error when creating the creator' });
   }
 };
 

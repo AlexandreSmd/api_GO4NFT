@@ -10,10 +10,10 @@ const createBeneficiary = async (req, res) => {
       [Beneficiary_Name, Beneficiary_keypub, Beneficiary_keyprv, Beneficiary_ETHAdress]
     );
 
-    res.status(201).json({ message: 'Bénéficiaire ajouté avec succès', id: result.insertId });
+    res.status(201).json({ message: 'Beneficiary successfully added', id: result.insertId });
   } catch (error) {
-    console.error('Erreur lors de la création du bénéficiaire :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la création du bénéficiaire' });
+    console.error('Error when creating beneficiary :', error);
+    res.status(500).json({ error: 'Server error when creating a beneficiary' });
   }
 };
 
@@ -28,11 +28,11 @@ const getETHAdressFromID = async (req, res) => {
       const BefAdress = rows[0].Beneficiary_ETHAdress;
       res.json({ Beneficiary_ETHAdress: BefAdress });
     } else {
-      res.status(404).json({ error: 'Bénéficiaire non trouvé' });
+      res.status(404).json({ error: 'Beneficiary not found' });
     }
   } catch (error) {
-    console.error('Erreur lors de la récupération de l adress eth du befeniciaire :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération de l adress eth du befeniciaire' });
+    console.error('Error when retrieving the beneficiary s ethereum address:', error);
+    res.status(500).json({ error: 'Server error when retrieving the beneficiary s ethereum address' });
   }
 };
 
@@ -51,16 +51,16 @@ const updateEthAdress = async (req, res) => {
 
     if (results[0] && results[0].affectedRows !== undefined) {
       if (results[0].affectedRows > 0) {
-        res.status(200).json({ message: 'Adress eth du beneficiaire mis à jour avec succès', id: creatorId });
+        res.status(200).json({ message: 'Beneficiary s eth address successfully updated', id: creatorId });
       } else {
-        res.status(404).json({ error: 'Beneficaire non trouvé' });
+        res.status(404).json({ error: 'Beneficiary not found' });
       }
     } else {
-      res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du beneficiaire' });
+      res.status(500).json({ error: 'Server error when updating beneficiary' });
     }
   } catch (error) {
-    console.error('Erreur lors de la mise à jour du bénéficaire :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du bénéficaire' });
+    console.error('Error updating the beneficiary :', error);
+    res.status(500).json({ error: 'Server error when updating the beneficiary' });
   }
 };
 
@@ -71,8 +71,8 @@ const getAllBeneficiary = async (req, res) => {
     const creators = await db.promise().query('SELECT * FROM BENEFICIARY');
     res.json(creators);
   } catch (error) {
-    console.error('Erreur lors de la récupération des bénéficiaires :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+    console.error('Error when retrieving beneficiaries :', error);
+    res.status(500).json({ error: 'Server error during data recovery' });
   }
 };
 
