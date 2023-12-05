@@ -13,46 +13,80 @@
     </head>
     <body>
         <h1>GO4NFT</h1>
-        <button id="comebackButton" style="background-color: #FF0000; color: white;" onclick="comeback()">Back to the initial website</button>
-        <button id="pdfButton" onclick="downloadPDF()">Download the PDF documentation</button>
-
-        <img src="picture/nft-singes.jpg" alt="Image de gauche" class="image-gauche">
-        <div class="container">
-            <label for="keypub">Public key :</label>
-            <input type="text" id="keypub" placeholder="Get your public key">
-
-            <label for="keyprv">Private key:</label>
-            <input type="text" id="keyprv" placeholder="Get your private key">
-
-            <label for="actor">Acteur :</label>
-            <select id="actor" onchange="showButtons()">
-            <option value="CREATOR">Creator</option>
-            <option value="ADMINISTRATOR">Administrator</option>
-            <option value="BENEFICIARY">Beneficiary</option>
-            </select>
-
-            <!-- Boutons pour tous les acteurs -->
-            <button id="Button_GetRights" style="display: none;" onclick="getRights()">Get rights of beneficiary n</button>
-            <button id="Button_GetEthAdress" style="display: none;" onclick="getEthAdress()">get ethereum adress of beneficiary n</button>
-            <button id="Button_GetCreatorNameWithId" style="display: none;" onclick="GetCreatorNameWithId()">get creator's name of creator n</button>
-            <label for="number" id="numberLabel" style="display: none;">Put a number n</label>
-            <input type="number" id="number" style="display: none;" placeholder="Put a number n ">
-            <div id="result" class="styled-result"></div>
-
-            <button id="adminButton_GetAllCreator" style="display: none;" onclick="getAllCreator()">Get all creator</button>
-            <button id="Button_GetAllCreatorName" style="display: none;" onclick="GetAllCreatorName()">get all creator's name</button>
-            <div id="result2" class="styled-result"></div>
-
-
-            <label for="creatorId">Creator's ID :</label>
-            <input type="text" id="creatorId" placeholder="Put your creator's ID">
-            <button id="payButton" onclick="sendEth()">Complete the transaction</button>
-            <div id="result3" class="styled-result"></div>
+        <h2>The API that connects artists to art consumers using blockchain and NFT technology</h2>
+        
+        <div class="button-container-right">
+            <button id="pdfButton" onclick="downloadPDF()">Download the PDF documentation</button>
+            <button id="comebackButton" onclick="comeback()">Back to the initial website</button>          
         </div>
-        <img src="picture/nft-singes2.jpg" alt="Image de droite" class="image-droite">
-        <script src="script.js"></script>
 
-        <div class="button-container">
+        <div class="container-wrapper">
+
+            <div class="left-container">
+                <h3>Welcome to the Future of Digital Art with GO4NFT!</h3>
+
+                <p>Dive into a realm where creativity converges with technology to birth a revolutionary art experience. Our platform unveils a new era for artists and art enthusiasts, harnessing the power of NFTs.</p>
+                    
+                <p>Explore one-of-a-kind, authentic creations immortalized on the blockchain, providing complete transparency on the origin and ownership of each piece. Artists discover newfound freedom of expression, while collectors gain exclusive access to digital art treasures.</p>
+                    
+                <p>Join our vibrant community where art becomes more than mere possession; it becomes a shared experience, a narrative etched in immutable lines of code. Together, let's redefine how the world perceives and appreciates art by forging unique connections between creators and their admirers.</p>
+                    
+                <p>Immerse yourself in the extraordinary, where each pixel carries a story, each artwork is a conversation, and every NFT is a gateway to boundless imagination. Welcome to the future of art, welcome to GO4NFT</p>
+            </div>
+
+
+            <div class="center-container">
+                <h3>Insert your public & private key to GET knowledge</h3>
+                <label for="keypub">Public key :</label>
+                <input type="text" id="keypub" placeholder="Insert your public key">
+
+                <label for="keyprv">Private key:</label>
+                <input type="text" id="keyprv" placeholder="Insert your private key">
+
+                <label for="actor">Acteur :</label>
+                <select id="actor" onchange="showButtons()">
+                <option value="CREATOR">Creator</option>
+                <option value="ADMINISTRATOR">Administrator</option>
+                <option value="BENEFICIARY">Beneficiary</option>
+                </select>
+
+                <!-- Boutons pour tous les acteurs -->
+                <label for="number" id="numberLabel" style="display: none;">Put a number n to GET data</label>
+                <input type="number" id="number" style="display: none;" placeholder="Put a number n ">
+
+                <button id="Button_GetRights" style="display: none;" onclick="getRights()">Get rights of beneficiary n</button>
+                <button id="Button_GetAllNftByCollectionID" style="display: none;" onclick="GetAllNftByCollectionID()">Get NFTs of collection n</button>
+                <button id="Button_GetEthAdress" style="display: none;" onclick="getEthAdress()">Get ethereum adress of beneficiary n</button>
+                <button id="Button_GetCreatorNameWithId" style="display: none;" onclick="GetCreatorNameWithId()">Get creator's name of creator n</button>
+
+                <div id="result" class="styled-result"></div>
+
+                <button id="adminButton_GetAllCreator" style="display: none;" onclick="getAllCreator()">Get all creator</button>
+                <button id="Button_GetAllCreatorName" style="display: none;" onclick="GetAllCreatorName()">Get all creator's name</button>
+                <button id="adminButton_GetAllBeneficiary" style="display: none;" onclick="GetAllBeneficiary()">Get all beneficiary</button>
+                <button id="adminButton_GetAllCollection" style="display: none;" onclick="GetAllCollection()">Get all collection</button>
+                <button id="Button_GetAllRight" style="display: none;" onclick="GetAllRight()">Get all right</button>
+
+                <div id="result2" class="styled-result"></div>
+
+                <h3>Are you a creator who needs more credits to mine NFTs? Don't worry, top up your credits with your metamask here</h3>
+                <label for="creatorId">Creator's ID :</label>
+                <input type="text" id="creatorId" placeholder="Put your creator's ID">
+                <button id="payButton" onclick="sendEth()">Complete the transaction</button>
+                <div id="result3" class="styled-result"></div>
+            </div>
+            <script src="script.js"></script>
+
+
+            <div class="right-container">
+                <h3>Practical Information</h3>
+                <p>API Documentation: Clicking the API documentation button will download a PDF containing clear instructions on how to use the API.</p>
+                <p>Frontend: This frontend is limited to the GET methods of our API. Indeed, for the remaining methods, primarily intended for creators, we believe it is necessary not to oversimplify the creation of NFTs. We want creators to understand what they are doing.</p>
+                <p>Importance of Education: For us, it is crucial to educate oneself daily and understand what one is using. That's why we encourage our users to explore what happens on the blockchain when they create an NFT collection or acquire certain ones (using tools like Etherscan and OpenSea).</p>
+                <p>Back to the Initial Website Button: Clicking this button will reset the frontend page and API results.</p>
+            </div>
+        </div>
+        <div class="button-container-left">
             <!-- Bouton pour rediriger vers "https://etherscan.io/" -->
             <button id="redirectButton" onclick="redirectToEtherscan()">Go to Etherscan</button>
 

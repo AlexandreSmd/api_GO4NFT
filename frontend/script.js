@@ -8,6 +8,8 @@ function showButtons() {
     document.getElementById('Button_GetAllCreatorName').style.display = 'none';
     document.getElementById('numberLabel').style.display = 'none';
     document.getElementById('number').style.display = 'none';
+    document.getElementById('adminButton_GetAllBeneficiary').style.display = 'none';
+    document.getElementById('adminButton_GetAllCollection').style.display = 'none';
 
     // Afficher le bouton approprié en fonction de l'acteur sélectionné
     switch (actor) {
@@ -16,14 +18,21 @@ function showButtons() {
             document.getElementById('Button_GetEthAdress').style.display = 'block';
             document.getElementById('Button_GetCreatorNameWithId').style.display = 'block';
             document.getElementById('Button_GetAllCreatorName').style.display = 'block';
+            document.getElementById('Button_GetAllRight').style.display = 'block';
+            document.getElementById('Button_GetAllNftByCollectionID').style.display = 'block';
+
             break;
         case 'ADMINISTRATOR':
             document.getElementById('Button_GetRights').style.display = 'block';
             document.getElementById('Button_GetEthAdress').style.display = 'block';
             document.getElementById('Button_GetCreatorNameWithId').style.display = 'block';
             document.getElementById('Button_GetAllCreatorName').style.display = 'block';
+            document.getElementById('Button_GetAllRight').style.display = 'block';
+            document.getElementById('Button_GetAllNftByCollectionID').style.display = 'block';
 
             document.getElementById('adminButton_GetAllCreator').style.display = 'block';
+            document.getElementById('adminButton_GetAllBeneficiary').style.display = 'block';
+            document.getElementById('adminButton_GetAllCollection').style.display = 'block';
 
             break;
         case 'BENEFICIARY':
@@ -31,6 +40,9 @@ function showButtons() {
             document.getElementById('Button_GetEthAdress').style.display = 'block';
             document.getElementById('Button_GetCreatorNameWithId').style.display = 'block';
             document.getElementById('Button_GetAllCreatorName').style.display = 'block';
+            document.getElementById('Button_GetAllRight').style.display = 'block';
+            document.getElementById('Button_GetAllNftByCollectionID').style.display = 'block';
+
             break;
     }
 
@@ -95,7 +107,7 @@ function showButtons() {
         console.log('Après la requête axios', response);
   
         document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
-          <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
+          <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
   
     } catch (error) {
         console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
@@ -197,7 +209,7 @@ async function GetAllCreatorName() {
         console.log('Après la requête axios', response);
   
         document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
-          <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
+          <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
   
     } catch (error) {
         console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
@@ -394,3 +406,134 @@ function redirectToEtherscan() {
 function redirectToOpenSea() {
     window.location.href = "https://opensea.io/";
 }
+
+
+
+async function GetAllBeneficiary() {
+    const keypub = document.getElementById('keypub').value;
+    const keyprv = document.getElementById('keyprv').value;
+    const actor = document.getElementById('actor').value;
+  
+    try {
+        console.log('Avant la requête axios');
+        const response = await axios.get(`http://localhost:3000/api/beneficiary/GetAllBeneficiary`, {
+            headers: {
+                'x-actor': actor,
+                'x-keypub': keypub,
+                'x-keyprv': keyprv,
+            },
+        });
+        console.log('Après la requête axios', response);
+  
+        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiary/GetAllBeneficiary :</p>
+          <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
+  
+    } catch (error) {
+        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        if (error.response) {
+            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
+        } else {
+            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
+            console.error('Erreur inattendue côté client :', error.message);
+        }
+    }
+  }
+
+
+  
+async function GetAllCollection() {
+    const keypub = document.getElementById('keypub').value;
+    const keyprv = document.getElementById('keyprv').value;
+    const actor = document.getElementById('actor').value;
+  
+    try {
+        console.log('Avant la requête axios');
+        const response = await axios.get(`http://localhost:3000/api/collection/GetAllCollection`, {
+            headers: {
+                'x-actor': actor,
+                'x-keypub': keypub,
+                'x-keyprv': keyprv,
+            },
+        });
+        console.log('Après la requête axios', response);
+  
+        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiary/GetAllBeneficiary :</p>
+          <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
+  
+    } catch (error) {
+        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        if (error.response) {
+            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
+        } else {
+            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
+            console.error('Erreur inattendue côté client :', error.message);
+        }
+    }
+  }
+
+  async function GetAllRight() {
+    const keypub = document.getElementById('keypub').value;
+    const keyprv = document.getElementById('keyprv').value;
+    const actor = document.getElementById('actor').value;
+  
+    try {
+        console.log('Avant la requête axios');
+        const response = await axios.get(`http://localhost:3000/api/right/GetAllRight`, {
+            headers: {
+                'x-actor': actor,
+                'x-keypub': keypub,
+                'x-keyprv': keyprv,
+            },
+        });
+        console.log('Après la requête axios', response);
+  
+        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+          <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
+  
+    } catch (error) {
+        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        if (error.response) {
+            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
+        } else {
+            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
+            console.error('Erreur inattendue côté client :', error.message);
+        }
+    }
+  }
+
+
+  
+  async function GetAllNftByCollectionID() {
+    const keypub = document.getElementById('keypub').value;
+    const keyprv = document.getElementById('keyprv').value;
+    const actor = document.getElementById('actor').value;
+    const number = document.getElementById('number').value;
+
+    try {
+        console.log('Avant la requête axios');
+        const response = await axios.get(`http://localhost:3000/api/nft/GetAllNft/${number}`, {
+            headers: {
+                'x-actor': actor,
+                'x-keypub': keypub,
+                'x-keyprv': keyprv,
+            },
+        });
+        console.log('Après la requête axios', response);
+  
+        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+          <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
+  
+    } catch (error) {
+        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        if (error.response) {
+            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
+        } else {
+            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
+            console.error('Erreur inattendue côté client :', error.message);
+        }
+    }
+  }

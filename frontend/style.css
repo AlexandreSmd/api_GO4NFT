@@ -4,15 +4,35 @@ body {
   margin: 0;
   padding: 0;
 }
+/* Nouveaux styles pour les conteneurs */
+.container-wrapper {
+  display: flex;
+  flex: 1; 
+  justify-content: space-between;
+}
 
-.container {
+/* Style pour le conteneur à gauche */
+.left-container,
+.right-container,
+.center-container {
   text-align: center;
-  margin: 50px auto;
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px; /* Coins arrondis pour le conteneur */
-  max-width: 400px;
+  max-width: 400px; /* Ajustez la largeur selon vos besoins */
+}
+
+/* Style spécifique pour le conteneur à gauche */
+.left-container {
+  margin-right: 100px; 
+  margin-left: 100px;/* Ajoutez une marge à droite pour séparer du conteneur central */
+}
+
+/* Style spécifique pour le conteneur à droite */
+.right-container {
+  margin-left: 100px;
+  margin-right: 100px; /* Ajoutez une marge à gauche pour séparer du conteneur central */
 }
 
 /* Ajout de styles pour le titre */
@@ -81,46 +101,16 @@ button:hover {
 }
 
 
-/* Nouveaux styles pour les images */
-.image-gauche,
-.image-droite {
-  max-width: 400px; /* Ajustez la largeur selon vos besoins */
-  height: auto;
-  position: absolute;
-  top: 50%; /* Positionne l'image au centre verticalement */
-  transform: translateY(-50%);
-}
-
-.image-gauche {
-  left: 2cm;
-}
-
-.image-droite {
-  right: 2cm;
-}
-
-
-#pdfButton {
-  background-color: #add8e6; /* Bleu pâle */
-  color: #000; /* Couleur du texte */
-  font-size: 12px; /* Taille de la police */
-  padding: 5px 10px; /* Espacement intérieur du bouton */
-  border: none; /* Supprimer la bordure */
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer;
-  position: fixed;
-  bottom: 10px; /* Distance depuis le bas */
-  right: 10px; /* Distance depuis la droite */
-  display: inline-block;
-  width: 200px; /* Largeur fixe du bouton */
-}
 
 /* Style pour le conteneur des boutons */
-.button-container {
+.button-container-left {
   position: fixed;
   bottom: 10px; /* Distance depuis le bas */
   left: 10px; /* Distance depuis la gauche */
 }
+
+
+
 
 /* Style pour le bouton de redirection vers Etherscan */
 #redirectButton {
@@ -147,4 +137,42 @@ button:hover {
   cursor: pointer;
   display: inline-block;
   width: 100px; /* Largeur fixe du bouton */
+}
+
+
+h2 {
+  color: #333; /* Couleur du texte */
+  font-size: 24px; /* Taille de la police */
+  margin-bottom: 60px; /* Marge en bas de l'élément h2 */
+  font-weight: bold; /* Poids de la police (gras) */
+  text-align: center; /* Centre le texte */
+  font-weight: bold; /* Texte en gras */
+}
+
+
+.button-container-right {
+  position: fixed;
+  bottom: 10px; /* Distance depuis le bas */
+  right: 10px; /* Distance depuis la droite */
+}
+
+#pdfButton,
+#comebackButton {
+  background-color: #add8e6; /* Bleu pâle */
+  color: #000; /* Couleur du texte */
+  font-size: 12px; /* Taille de la police */
+  padding: 5px 10px; /* Espacement intérieur du bouton */
+  border: none; /* Supprimer la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 5px; /* Distance entre les boutons */
+  width: 200px; /* Largeur fixe du bouton */
+}
+
+p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
 }

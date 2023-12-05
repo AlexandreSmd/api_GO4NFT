@@ -10,7 +10,7 @@ const apiAuthMiddlewareG = require('../middleware/apiAuthMiddlewareGlobal');
 router.post('/Collection/CreateCollection', apiAuthMiddlewareC.checkKeyPairC, controller.createCollection);
 
 // Route pour obtenir toutes les collections (autorisé pour les admins)
-router.get('/right/GetAllRight', apiAuthMiddlewareA.checkKeyPairA, controller.getAllCollection);
+router.get('/collection/GetAllCollection', apiAuthMiddlewareA.checkKeyPairA, controller.getAllCollection);
 
 // Route pour obtenir tous les NFTs d'une collection (autorisé pour tout le monde)
 router.get('/nft/GetAllNft/:id', apiAuthMiddlewareG.checkKeyPairG, controller.getAllNftByIDCollection);
