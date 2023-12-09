@@ -26,5 +26,7 @@ router.put('/creator/UpdateCreatorName/:id', apiAuthMiddlewareC.checkKeyPairC, c
 //Route pour voir si le créateur id existe (1 si oui 0 sinon)
 router.get('/creator/ifCreatorExist/:id', apiAuthMiddlewareA.checkKeyPairA, controller.ifCreatorExist);
 
+//Route pour voir le compteur d'un creator
+router.get('/creator/GetCCreator/:id', apiAuthMiddlewareG.checkKeyPairG, controller.getCCreator);
 
 module.exports = router;

@@ -147,6 +147,19 @@ const ifCreatorExist = async (req, res) => {
 };
 
 
+const getCCreator = async (req, res) => {
+  try {
+    const creatorId = req.params.id;
+    const creators = await db.promise().query('SELECT CREATOR_C FROM CREATOR WHERE Creator_ID = ?', [creatorId]);
+    res.json(creators[0]);
+  } catch (error) {
+    console.error('Error retrieving creator C :', error);
+    res.status(500).json({ error: 'Server error during data recovery' });
+  }
+};
+
+
+
 
 module.exports = {
   getAllCreators,
@@ -156,4 +169,5 @@ module.exports = {
   updateCCreator,
   getAllCreatorName,
   ifCreatorExist,
+  getCCreator
 };
