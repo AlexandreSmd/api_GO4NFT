@@ -1,7 +1,7 @@
 function showButtons() {
     const actor = document.getElementById('actor').value;
 
-    // Masquer tous les boutons et le champ de saisie
+    // Hide all buttons and input field
     document.getElementById('Button_GetRights').style.display = 'none';
     document.getElementById('adminButton_GetAllCreator').style.display = 'none';
     document.getElementById('Button_GetEthAdress').style.display = 'none';
@@ -11,8 +11,7 @@ function showButtons() {
     document.getElementById('adminButton_GetAllBeneficiary').style.display = 'none';
     document.getElementById('adminButton_GetAllCollection').style.display = 'none';
 
-
-    // Afficher le bouton approprié en fonction de l'acteur sélectionné
+    // Show the appropriate button based on the selected actor
     switch (actor) {
         case 'CREATOR':
             document.getElementById('Button_GetRights').style.display = 'block';
@@ -22,8 +21,6 @@ function showButtons() {
             document.getElementById('Button_GetAllRight').style.display = 'block';
             document.getElementById('Button_GetAllNftByCollectionID').style.display = 'block';
             document.getElementById('Button_GetCCreator').style.display = 'block';
-
-
             break;
         case 'ADMINISTRATOR':
             document.getElementById('Button_GetRights').style.display = 'block';
@@ -33,12 +30,9 @@ function showButtons() {
             document.getElementById('Button_GetAllRight').style.display = 'block';
             document.getElementById('Button_GetAllNftByCollectionID').style.display = 'block';
             document.getElementById('Button_GetCCreator').style.display = 'block';
-
-
             document.getElementById('adminButton_GetAllCreator').style.display = 'block';
             document.getElementById('adminButton_GetAllBeneficiary').style.display = 'block';
             document.getElementById('adminButton_GetAllCollection').style.display = 'block';
-
             break;
         case 'BENEFICIARY':
             document.getElementById('Button_GetRights').style.display = 'block';
@@ -48,28 +42,25 @@ function showButtons() {
             document.getElementById('Button_GetAllRight').style.display = 'block';
             document.getElementById('Button_GetAllNftByCollectionID').style.display = 'block';
             document.getElementById('Button_GetCCreator').style.display = 'block';
-
-
             break;
     }
 
-    // Afficher le champ de saisie uniquement si l'acteur est sélectionné
+    // Show the input field only if an actor is selected
     if (actor !== '') {
         document.getElementById('numberLabel').style.display = 'block';
         document.getElementById('number').style.display = 'block';
     }
 }
 
-  
-  // Fonction pour donner des droits selon l'ID du bénéficaire
-  async function getRights() {
+// Function to grant rights based on beneficiary ID
+async function getRights() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
-    const number = document.getElementById('number').value; // Récupérer la valeur de l'input number
-  
+    const number = document.getElementById('number').value; // Retrieve the value of the number input
+
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/beneficiary/GetBeneficiaryRight/${number}`, {
             headers: {
                 'x-actor': actor,
@@ -77,33 +68,31 @@ function showButtons() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result').innerHTML = `<p>Result of GET /api/beneficiary/GetBeneficiaryRight/ :</p>
           <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright/${number} :`, error);
+        console.error(`Error while requesting GET /beneficiaryright/${number} :`, error);
         if (error.response) {
-            document.getElementById('result').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result').innerHTML = `<p>Error while requesting GET /beneficiaryright/${number} :</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright/${number}</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result').innerHTML = `<p>Unexpected error while requesting GET /beneficiaryright/${number}</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
+}
 
-
-  
-  // Fonction pour donner des droits selon l'ID du bénéficaire
-  async function getAllCreator() {
+// Function to grant rights based on beneficiary ID
+async function getAllCreator() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
-  
+
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/creator/GetAllCreator`, {
             headers: {
                 'x-actor': actor,
@@ -111,32 +100,31 @@ function showButtons() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result2').innerHTML = `<p>Result of GET /beneficiaryright :</p>
           <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error while requesting GET /beneficiaryright :`, error);
         if (error.response) {
-            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result2').innerHTML = `<p>Error while requesting GET /beneficiaryright/${number} :</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result2').innerHTML = `<p>Unexpected error while requesting GET /beneficiaryright</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
-
-// Fonction pour donner des droits selon l'ID du bénéficaire
-async function getEthAdress() {
+}
+// Function to retrieve rights based on beneficiary ID
+async function getEthAddress() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
     const number = document.getElementById('number').value;
-  
+
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/beneficiary/GetEthAddressOfBeneficiary/${number}`, {
             headers: {
                 'x-actor': actor,
@@ -144,25 +132,22 @@ async function getEthAdress() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result').innerHTML = `<p>Result of GET /beneficiaryright request:</p>
           <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error during GET /beneficiaryright request:`, error);
         if (error.response) {
-            document.getElementById('result').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result').innerHTML = `<p>Error during GET /beneficiaryright/${number} request:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result').innerHTML = `<p>Unexpected error during GET /beneficiaryright request</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
-
-
-  // Fonction pour donner des droits selon l'ID du bénéficaire
+}
 async function GetCreatorNameWithId() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
@@ -170,7 +155,7 @@ async function GetCreatorNameWithId() {
     const number = document.getElementById('number').value;
   
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/creator/GetCreatorNameWithId/${number}`, {
             headers: {
                 'x-actor': actor,
@@ -178,19 +163,19 @@ async function GetCreatorNameWithId() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
+        console.log('After axios request', response);
   
-        document.getElementById('result').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        document.getElementById('result').innerHTML = `<p>Result of the GET /beneficiaryright request:</p>
           <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
   
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error while requesting GET /beneficiaryright:`, error);
         if (error.response) {
-            document.getElementById('result').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result').innerHTML = `<p>Error while requesting GET /beneficiaryright/${number}:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result').innerHTML = `<p>Unexpected error while requesting GET /beneficiaryright</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
   }
@@ -198,14 +183,14 @@ async function GetCreatorNameWithId() {
 
   
 
-  // Fonction pour donner des droits selon l'ID du bénéficaire
+  // Function to grant rights based on the beneficiary's ID
 async function GetAllCreatorName() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
   
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/creator/GetAllCreatorName`, {
             headers: {
                 'x-actor': actor,
@@ -213,19 +198,19 @@ async function GetAllCreatorName() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
+        console.log('After axios request', response);
   
-        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        document.getElementById('result2').innerHTML = `<p>Result of the GET /beneficiaryright request:</p>
           <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
   
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error while requesting GET /beneficiaryright:`, error);
         if (error.response) {
-            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result2').innerHTML = `<p>Error while requesting GET /beneficiaryright/${number}:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result2').innerHTML = `<p>Unexpected error while requesting GET /beneficiaryright</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
   }
@@ -237,42 +222,42 @@ async function GetAllCreatorName() {
     const targetAddress = '0x3e0CaBAac78d2c9Cc88A8D374E2141ae953B4B9A';
     const amountToSend = web3.utils.toWei('0.00001', 'ether');
 
-    // Vérifier l'existence du créateur avant de procéder à la transaction
+    // Check the existence of the creator before proceeding with the transaction
     const creatorExists = await ifExist(creatorId);    
     console.log(creatorExists);
     if (!creatorExists) {
-        console.log('Créateur inexistant.');
-        document.getElementById('result3').innerHTML = `<p>Créateur inexistant</p>`;
+        console.log('Nonexistent creator.');
+        document.getElementById('result3').innerHTML = `<p>Nonexistent creator</p>`;
         return;
     }
     try {
-        // Demander à MetaMask l'autorisation
+        // Request authorization from MetaMask
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const fromAddress = accounts[0];
 
-        // Construire la transaction
+        // Build the transaction
         const transactionParameters = {
             from: fromAddress,
             to: targetAddress,
             value: amountToSend,
         };
 
-        // Envoyer la transaction
+        // Send the transaction
         const transactionHash = await window.ethereum.request({
             method: 'eth_sendTransaction',
             params: [transactionParameters],
         });
 
-        // Attendre la confirmation de la transaction
+        // Wait for transaction confirmation
         await waitForTransactionConfirmation(transactionHash);
 
-        // Une fois la transaction confirmée, créditer le compteur C
+        // Once the transaction is confirmed, credit counter C
         await creditCounterC(creatorId);
 
-        document.getElementById('result3').innerHTML = `<p>Transaction réussie !</p>`;
+        document.getElementById('result3').innerHTML = `<p>Successful transaction!</p>`;
     } catch (error) {
-        console.error('Erreur lors de la transaction :', error);
-        document.getElementById('result3').innerHTML = `<p>Erreur lors de la transaction : ${error.message}</p>`;
+        console.error('Error during the transaction:', error);
+        document.getElementById('result3').innerHTML = `<p>Error during the transaction: ${error.message}</p>`;
     }
 }
 
@@ -301,8 +286,8 @@ async function waitForTransactionConfirmation(transactionHash) {
 async function creditCounterC(creatorId) {
     const keypub = '123';
     const keyprv = '123';
-    // Vous devez implémenter la logique pour créditer le compteur C côté serveur
-    // Utilisez une requête Axios pour appeler l'API qui gère cela
+    // You must implement the logic to credit counter C on the server side
+    // Use an Axios request to call the API that handles this
     try {
         const updatedCreator = {
             Creator_C_add: 10,
@@ -316,12 +301,12 @@ async function creditCounterC(creatorId) {
             },
           });
 
-        console.log('Réponse du serveur :', response.data);
+        console.log('Server response:', response.data);
     } catch (error) {
-        console.error('Erreur lors du crédit du compteur C :', error);
+        console.error('Error while crediting counter C:', error);
     }
 }
-// Fonction pour vérifier l'existence du créateur
+// Function to check the existence of the creator
 async function ifExist(creatorId) {
     try {
         const response = await axios.get(`http://localhost:3000/api/creator/ifCreatorExist/${creatorId}`, {
@@ -332,39 +317,38 @@ async function ifExist(creatorId) {
             },
         });
 
-        // Vérifiez si la réponse indique que le créateur existe
+        // Check if the response indicates that the creator exists
         if (response.data.exists) {
-            // Le créateur existe, poursuivez le programme
-            console.log('Le créateur existe.');
+            // The creator exists, continue the program
+            console.log('The creator exists.');
             return true;
         } else {
-            // Le créateur n'existe pas, arrêtez ici le programme
-            console.log('Le créateur est inexistant.');
+            // The creator does not exist, stop the program here
+            console.log('The creator is nonexistent.');
             return false;
         }
     } catch (error) {
-        // Gérez les erreurs de la requête Axios
+        // Handle Axios request errors
         if (error.response && error.response.status === 404) {
-            // Le créateur n'existe pas, arrêtez ici le programme
-            console.log('Le créateur est inexistant.');
+            // The creator does not exist, stop the program here
+            console.log('The creator is nonexistent.');
             return false;
         } else {
-            console.error('Erreur lors de la vérification de l\'existence du créateur:', error.message);
-            throw error; // Vous pouvez choisir de relancer l'erreur ou de la gérer différemment
+            console.error('Error while checking the existence of the creator:', error.message);
+            throw error; // You can choose to rethrow the error or handle it differently
         }
     }
 }
 
-
 function comeback() {
-    // Réinitialiser les champs de saisie
+    // Reset input fields
     document.getElementById('keypub').value = '';
     document.getElementById('keyprv').value = '';
     document.getElementById('actor').value = '';
     document.getElementById('number').value = '';
     document.getElementById('creatorId').value = '';
 
-    // Masquer tous les boutons et le champ de saisie
+    // Hide all buttons and input field
     document.getElementById('Button_GetRights').style.display = 'none';
     document.getElementById('adminButton_GetAllCreator').style.display = 'none';
     document.getElementById('Button_GetEthAdress').style.display = 'none';
@@ -372,36 +356,35 @@ function comeback() {
     document.getElementById('numberLabel').style.display = 'none';
     document.getElementById('number').style.display = 'none';
 
-    // Réinitialiser les résultats
+    // Reset results
     document.getElementById('result').innerHTML = '';
     document.getElementById('result2').innerHTML = '';
     document.getElementById('result3').innerHTML = '';
 
-    // Afficher le champ de saisie uniquement si l'acteur est sélectionné
+    // Show input field only if actor is selected
     document.getElementById('numberLabel').style.display = 'block';
     document.getElementById('number').style.display = 'block';
 }
 
-
 function downloadPDF() {
-    // Créez le chemin vers votre fichier PDF
+    // Create path to your PDF file
     const pdfPath = 'pdf/pdftest.pdf';
 
-    // Générez une URL pour le fichier PDF
+    // Generate URL for the PDF file
     const url = pdfPath;
 
-    // Créez un élément <a> pour le téléchargement
+    // Create an <a> element for downloading
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'mon_fichier.pdf'; // Nom du fichier PDF à télécharger
+    a.download = 'my_file.pdf'; // Name of the PDF file to download
 
-    // Ajoutez l'élément <a> à la page
+    // Add the <a> element to the page
     document.body.appendChild(a);
 
-    // Cliquez sur l'élément <a> pour déclencher le téléchargement
+    // Click on the <a> element to trigger the download
     a.click();
 
-    // Retirez l'élément <a> de la page
+    // Remove the <a> element from the page
     document.body.removeChild(a);
 }
 
@@ -409,20 +392,17 @@ function redirectToEtherscan() {
     window.location.href = "https://etherscan.io/";
 }
 
-
 function redirectToOpenSea() {
     window.location.href = "https://opensea.io/";
 }
-
-
 
 async function GetAllBeneficiary() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
-  
+
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/beneficiary/GetAllBeneficiary`, {
             headers: {
                 'x-actor': actor,
@@ -430,32 +410,30 @@ async function GetAllBeneficiary() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiary/GetAllBeneficiary :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result2').innerHTML = `<p>Result of GET /beneficiary/GetAllBeneficiary:</p>
           <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error during GET /beneficiaryright request:`, error);
         if (error.response) {
-            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result2').innerHTML = `<p>Error during GET /beneficiaryright/${number} request:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result2').innerHTML = `<p>Unexpected error during GET /beneficiaryright request</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
+}
 
-
-  
 async function GetAllCollection() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
-  
+
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/collection/GetAllCollection`, {
             headers: {
                 'x-actor': actor,
@@ -463,30 +441,30 @@ async function GetAllCollection() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiary/GetAllBeneficiary :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result2').innerHTML = `<p>Result of GET /beneficiary/GetAllBeneficiary:</p>
           <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error during GET /beneficiaryright request:`, error);
         if (error.response) {
-            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result2').innerHTML = `<p>Error during GET /beneficiaryright/${number} request:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result2').innerHTML = `<p>Unexpected error during GET /beneficiaryright request</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
+}
 
-  async function GetAllRight() {
+async function GetAllRight() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
-  
+
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/right/GetAllRight`, {
             headers: {
                 'x-actor': actor,
@@ -494,33 +472,32 @@ async function GetAllCollection() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result2').innerHTML = `<p>Result of GET /beneficiaryright:</p>
           <pre>${JSON.stringify(response.data[0], null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error during GET /beneficiaryright request:`, error);
         if (error.response) {
-            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result2').innerHTML = `<p>Error during GET /beneficiaryright/${number} request:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result2').innerHTML = `<p>Unexpected error during GET /beneficiaryright request</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
+}
 
 
-  
-  async function GetAllNftByCollectionID() {
+async function GetAllNftByCollectionID() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
     const number = document.getElementById('number').value;
 
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/nft/GetAllNft/${number}`, {
             headers: {
                 'x-actor': actor,
@@ -528,35 +505,33 @@ async function GetAllCollection() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result2').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result').innerHTML = `<p>Result of GET /beneficiaryright:</p>
           <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error during GET /beneficiaryright request:`, error);
         if (error.response) {
-            document.getElementById('result2').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result').innerHTML = `<p>Error during GET /beneficiaryright/${number} request:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result2').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result').innerHTML = `<p>Unexpected error during GET /beneficiaryright request</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
-
-
+}
 
   
   
-  async function GetCCreator() {
+async function GetCCreator() {
     const keypub = document.getElementById('keypub').value;
     const keyprv = document.getElementById('keyprv').value;
     const actor = document.getElementById('actor').value;
     const number = document.getElementById('number').value;
 
     try {
-        console.log('Avant la requête axios');
+        console.log('Before axios request');
         const response = await axios.get(`http://localhost:3000/api/creator/GetCCreator/${number}`, {
             headers: {
                 'x-actor': actor,
@@ -564,19 +539,19 @@ async function GetAllCollection() {
                 'x-keyprv': keyprv,
             },
         });
-        console.log('Après la requête axios', response);
-  
-        document.getElementById('result').innerHTML = `<p>Résultat de la requête GET /beneficiaryright :</p>
+        console.log('After axios request', response);
+
+        document.getElementById('result').innerHTML = `<p>Result of GET /beneficiaryright:</p>
           <pre>${JSON.stringify(response.data, null, 2)}</pre>`;
-  
+
     } catch (error) {
-        console.error(`Erreur lors de la requête GET /beneficiaryright :`, error);
+        console.error(`Error during GET /beneficiaryright request:`, error);
         if (error.response) {
-            document.getElementById('result').innerHTML = `<p>Erreur lors de la requête GET /beneficiaryright/${number} :</p>
+            document.getElementById('result').innerHTML = `<p>Error during GET /beneficiaryright/${number} request:</p>
             <pre>${JSON.stringify(error.response.data, null, 2)}</pre>`;
         } else {
-            document.getElementById('result').innerHTML = `<p>Erreur inattendue lors de la requête GET /beneficiaryright</p>`;
-            console.error('Erreur inattendue côté client :', error.message);
+            document.getElementById('result').innerHTML = `<p>Unexpected error during GET /beneficiaryright request</p>`;
+            console.error('Unexpected client-side error:', error.message);
         }
     }
-  }
+}

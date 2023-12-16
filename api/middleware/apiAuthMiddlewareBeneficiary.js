@@ -7,12 +7,12 @@ const checkKeyPairB = async (req, res, next) => {
   const keyprv = req.headers['x-keyprv']; // Récupérez la clé privée à partir des en-têtes
   const actor = req.headers['x-actor'];
   if (!keypub || !keyprv) {
-    return res.status(401).json({ error: 'Clé publique ou privée manquante' });
+    return res.status(401).json({ error: 'Public or private key missing' });
   }
 
 
   if (actor != 'BENEFICIARY') {
-    return res.status(401).json({error : 'mauvais actor'})
+    return res.status(401).json({error : 'bad actor'})
   }
 
   try {
@@ -25,11 +25,11 @@ const checkKeyPairB = async (req, res, next) => {
       req.creatorId = rows[0].Creator_ID;
       next(); // Passez au middleware suivant ou à la route
     } else {
-      res.status(401).json({ error: 'Paire de clés invalide' });
+      res.status(401).json({ error: 'Invalid key pair' });
     }
   } catch (error) {
-    console.error('Erreur lors de la vérification de la paire de clés :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la vérification de la paire de clés' });
+    console.error('Error when checking the key pair :', error);
+    res.status(500).json({ error: 'Server error checking the key pair' });
   }
 };
 

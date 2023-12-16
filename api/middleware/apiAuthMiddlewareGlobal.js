@@ -6,7 +6,7 @@ const checkKeyPairG = async (req, res, next) => {
   const keyprv = req.headers['x-keyprv']; // Récupérez la clé privée à partir des en-têtes
 
   if (!keypub || !keyprv) {
-    return res.status(401).json({ error: 'Clé publique ou privée manquante' });
+    return res.status(401).json({ error: 'Public or private key missing' });
   }
 
   // Récupérez le type d'acteur
@@ -24,7 +24,7 @@ const checkKeyPairG = async (req, res, next) => {
     req[actor + 'Id'] = rows[0][actor + '_ID'];
     next(); // Passez au middleware suivant ou à la route
   } else {
-    res.status(401).json({ error: 'Paire de clés invalide' });
+    res.status(401).json({ error: 'Invalid key pair' });
   }
 };
 

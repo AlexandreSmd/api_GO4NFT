@@ -10,10 +10,10 @@ const createRight = async (req, res) => {
       [Right_Name]
     );
 
-    res.status(201).json({ message: 'Right ajouté avec succès', id: result.insertId });
+    res.status(201).json({ message: 'Right successfully added', id: result.insertId });
   } catch (error) {
-    console.error('Erreur lors de la création du Right :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la création du Right' });
+    console.error('Error when creating the right :', error);
+    res.status(500).json({ error: 'Server Error when creating the right' });
   }
 };
 
@@ -24,8 +24,8 @@ const getAllRights = async (req, res) => {
     const rights = await db.promise().query('SELECT * FROM rights');
     res.json(rights);
   } catch (error) {
-    console.error('Erreur lors de la récupération des créateurs :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+    console.error('Error while retrieving rights :', error);
+    res.status(500).json({ error: 'Server Error' });
   }
 };
 

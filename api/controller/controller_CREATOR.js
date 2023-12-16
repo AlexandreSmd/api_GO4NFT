@@ -77,16 +77,16 @@ const updateNameCreator = async (req, res) => {
 
     if (results[0] && results[0].affectedRows !== undefined) {
       if (results[0].affectedRows > 0) {
-        res.status(200).json({ message: 'Créateur mis à jour avec succès', id: creatorId });
+        res.status(200).json({ message: 'Creator updated successfully', id: creatorId });
       } else {
-        res.status(404).json({ error: 'Créateur non trouvé' });
+        res.status(404).json({ error: 'Creator not found' });
       }
-    } else {
-      res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du créateur' });
+    } else {Erreur
+      res.status(500).json({ error: 'Server error updating creator' });
     }
   } catch (error) {
-    console.error('Erreur lors de la mise à jour du créateur :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du créateur' });
+    console.error('Error updating creator :', error);
+    res.status(500).json({ error: 'EServer error updating creator' });
   }
 };
 
@@ -116,16 +116,16 @@ const updateCCreator = async (req, res) => {
 
     if (results[0] && results[0].affectedRows !== undefined) {
       if (results[0].affectedRows > 0) {
-        res.status(200).json({ message: 'Créateur mis à jour avec succès', id: creatorId });
+        res.status(200).json({ message: 'Creator updated successfully', id: creatorId });
       } else {
-        res.status(404).json({ error: 'Créateur non trouvé' });
+        res.status(404).json({ error: 'Creator not found' });
       }
     } else {
-      res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du créateur' });
+      res.status(500).json({ error: 'Server error updating creator' });
     }
   } catch (error) {
-    console.error('Erreur lors de la mise à jour du créateur :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du créateur' });
+    console.error('Error updating creator :', error);
+    res.status(500).json({ error: 'Server error updating creator' });
   }
 };
 
@@ -141,8 +141,8 @@ const ifCreatorExist = async (req, res) => {
           res.status(200).json({ exists: true });
       }
   } catch (error) {
-      console.error('Erreur lors de la récupération des noms de créateurs :', error);
-      res.status(500).json({ error: 'Erreur serveur lors de la récupération des données' });
+      console.error('Error retrieving creator names :', error);
+      res.status(500).json({ error: 'Server Error Retrieving Data' });
   }
 };
 
