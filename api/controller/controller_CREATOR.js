@@ -1,5 +1,27 @@
 const db = require('../middleware/connectDB');
 
+/**
+ * @api {get} /creators/GetAllCreators Get All Creators
+ * @apiName GetAllCreators
+ * @apiGroup Creator
+ *
+ * @apiSuccess {Object[]} creators List of all creators.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "Creator_ID": 1,
+ *         "Creator_Name": "John Doe",
+ *         "Creator_keypub": "0xabc...",
+ *         "Creator_keyprv": "0xdef...",
+ *         "CREATOR_C": 100
+ *       },
+ *       // More creators...
+ *     ]
+ *
+ * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ */
+
 // Méthode GET pour obtenir tous les créateurs
 const getAllCreators = async (req, res) => {
   try {
@@ -12,7 +34,23 @@ const getAllCreators = async (req, res) => {
 };
 
 
-
+/**
+ * @api {get} /creators/GetAllCreatorName Get All Creator Names
+ * @apiName GetAllCreatorName
+ * @apiGroup Creator
+ *
+ * @apiSuccess {Object[]} creators List of all creator names.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "Creator_Name": "John Doe"
+ *       },
+ *       // More creator names...
+ *     ]
+ *
+ * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ */
 
 // Méthode GET pour obtenir tous les nom des créateurs
 const getAllCreatorName = async (req, res) => {
@@ -25,6 +63,23 @@ const getAllCreatorName = async (req, res) => {
   }
 };
 
+/**
+ * @api {get} /creators/GetOneCreatorNameByID/:id Get Creator Name by ID
+ * @apiName GetOneCreatorNameByID
+ * @apiGroup Creator
+ *
+ * @apiParam {Number} id ID of the creator.
+ *
+ * @apiSuccess {Object} Creator_Name Creator name.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "Creator_Name": "John Doe"
+ *     }
+ *
+ * @apiError (404 Not Found) {String} error Creator not found.
+ * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ */
 
 // Méthode GET pour obtenir un créateur par son ID
 const getOneCreatorNameByID = async (req, res) => {
@@ -47,6 +102,27 @@ const getOneCreatorNameByID = async (req, res) => {
 };
 
 
+/**
+ * @api {post} /creators/Create Create Creator
+ * @apiName CreateCreator
+ * @apiGroup Creator
+ *
+ * @apiParam {String} Creator_Name Name of the creator.
+ * @apiParam {String} Creator_keypub Public key of the creator.
+ * @apiParam {String} Creator_keyprv Private key of the creator.
+ *
+ * @apiSuccess {String} message Success message.
+ * @apiSuccess {Number} id ID of the created creator.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201 OK
+ *     {
+ *       "message": "Creator successfully added",
+ *       "id": 1
+ *     }
+ *
+ * @apiError (500 Internal Server Error) {String} error Server error when creating the creator.
+ */
+
 // Méthode POST pour créer un créateur
 const createCreator = async (req, res) => {
   const { Creator_Name, Creator_keypub, Creator_keyprv} = req.body; // Les données sont extraites du corps de la requête
@@ -63,6 +139,27 @@ const createCreator = async (req, res) => {
     res.status(500).json({ error: 'Server error when creating the creator' });
   }
 };
+
+/**
+ * @api {put} /creators/UpdateName/:id Update Creator Name
+ * @apiName UpdateNameCreator
+ * @apiGroup Creator
+ *
+ * @apiParam {Number} id ID of the creator.
+ * @apiParam {String} Creator_Name New name for the creator.
+ *
+ * @apiSuccess {String} message Success message.
+ * @apiSuccess {Number} id ID of the updated creator.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "message": "Creator updated successfully",
+ *       "id": 1
+ *     }
+ *
+ * @apiError (404 Not Found) {String} error Creator not found.
+ * @apiError (500 Internal Server Error) {String} error Server error updating creator.
+ */
 
 // Méthode PUT pour mettre à jour un créateur
 const updateNameCreator = async (req, res) => {
@@ -90,6 +187,26 @@ const updateNameCreator = async (req, res) => {
   }
 };
 
+/**
+ * @api {put} /creators/UpdateCCreator/:id Update Creator Credits
+ * @apiName UpdateCCreator
+ * @apiGroup Creator
+ *
+ * @apiParam {Number} id ID of the creator.
+ * @apiParam {Number} Creator_C_add Number of credits to add to the creator.
+ *
+ * @apiSuccess {String} message Success message.
+ * @apiSuccess {Number} id ID of the updated creator.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "message": "Creator updated successfully",
+ *       "id": 1
+ *     }
+ *
+ * @apiError (404 Not Found) {String} error Créateur inexistant.
+ * @apiError (500 Internal Server Error) {String} error Server error updating creator.
+ */
 
 // Méthode PUT pour mettre à jour les crédits d'un créateur
 const updateCCreator = async (req, res) => {
@@ -129,6 +246,23 @@ const updateCCreator = async (req, res) => {
   }
 };
 
+/**
+ * @api {get} /creators/IfCreatorExist/:id Check If Creator Exists
+ * @apiName IfCreatorExist
+ * @apiGroup Creator
+ *
+ * @apiParam {Number} id ID of the creator.
+ *
+ * @apiSuccess {Boolean} exists Indicates whether the creator exists or not.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "exists": true
+ *     }
+ *
+ * @apiError (500 Internal Server Error) {String} error Server Error Retrieving Data.
+ */
+
 // Méthode GET pour voir si un créateur existe.
 const ifCreatorExist = async (req, res) => {
   try {
@@ -146,6 +280,22 @@ const ifCreatorExist = async (req, res) => {
   }
 };
 
+/**
+ * @api {get} /creators/GetCCreator/:id Get Creator Credits
+ * @apiName GetCCreator
+ * @apiGroup Creator
+ *
+ * @apiParam {Number} id ID of the creator.
+ *
+ * @apiSuccess {Object} CREATOR_C Creator credits.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "CREATOR_C": 100
+ *     }
+ *
+ * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ */
 
 const getCCreator = async (req, res) => {
   try {

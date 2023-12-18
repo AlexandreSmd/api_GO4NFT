@@ -45,3 +45,4 @@ Lire tt les rights qu'on a en tant que Beneficiaire
 
 http://localhost:3000
 
+apidoc -i ./ -o ./

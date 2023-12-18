@@ -1,5 +1,31 @@
 const db = require('../middleware/connectDB');
 
+/**
+ * @api {post} /nftrights/Create Create NFT Right
+ * @apiName CreateNFTRight
+ * @apiGroup NFTRight
+ *
+ * @apiHeader {String} x-keypub Creator's public key.
+ * @apiHeader {String} x-keyprv Creator's private key.
+ *
+ * @apiParam {Number} NFTRIGHT_IDNFT ID of the associated NFT.
+ * @apiParam {Number} NFTRIGHT_IDRIGHT ID of the associated right.
+ *
+ * @apiSuccess {String} message Success message.
+ * @apiSuccess {Number} id ID of the created NFT right.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201 OK
+ *     {
+ *       "message": "NFT right successfully added",
+ *       "id": 1
+ *     }
+ *
+ * @apiError (401 Unauthorized) {String} error Invalid public or private key.
+ * @apiError (403 Forbidden) {String} error You are not the creator of this NFT.
+ * @apiError (404 Not Found) {String} error NFT not found.
+ * @apiError (500 Internal Server Error) {String} error Server Error Creating NFT right.
+ */
+
 const createNFTRight = async (req, res) => {
   const { NFTRIGHT_IDNFT, NFTRIGHT_IDRIGHT } = req.body;
   const { 'x-keypub': keypub, 'x-keyprv': keyprv } = req.headers;

@@ -1,6 +1,37 @@
 const db = require('../middleware/connectDB');
 const { mintNFTA } = require('./mint-collection');
 
+/**
+ * @api {post} /collection/Create Create Collection
+ * @apiName CreateCollection
+ * @apiGroup Collection
+ *
+ * @apiHeader {String} x-keypub Public key of the creator.
+ * @apiHeader {String} x-keyprv Private key of the creator.
+ *
+ * @apiParam {Number} Collection_NumberOfNFT Number of NFTs in the collection.
+ * @apiParam {String} Collection_Name Name of the collection.
+ * @apiParam {String} Collection_Symbol Symbol of the collection.
+ * @apiParam {Array} metadataArray Array of NFT metadata.
+ * @apiParam {Array} recipientAddresses Array of recipient addresses.
+ * @apiParam {Number} Collection_CreatorID ID of the collection creator.
+ * @apiParam {Array} OwnerIdArray Array of NFT owner IDs.
+ *
+ * @apiSuccess {String} message Success message.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201 OK
+ *     {
+ *       "message": "Collection successfully added"
+ *     }
+ *
+ * @apiError (500 Internal Server Error) {String} error Error when inserting data in the COLLECTION table.
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Error when inserting data in the COLLECTION table:"
+ *     }
+ */
+
 const createCollection = async (req, res) => {
   const { Collection_NumberOfNFT, Collection_Name, Collection_Symbol, metadataArray, recipientAddresses, Collection_CreatorID, OwnerIdArray } = req.body;
 
@@ -77,6 +108,28 @@ const createCollection = async (req, res) => {
 };
 
 
+/**
+ * @api {get} /collection/GetAllCollection Get All Collections
+ * @apiName GetAllCollection
+ * @apiGroup Collection
+ *
+ * @apiSuccess {Object[]} collection List of all collections.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "Collection_ID": 1,
+ *         "Collection_Name": "My Collection",
+ *         "Collection_NumberOfNFT": 10,
+ *         "Collection_Creator": 1,
+ *         "Collection_Symbol": "MCS",
+ *         "Collection_Adress": "0x1234..."
+ *       },
+ *       // More collections...
+ *     ]
+ *
+ * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ */
 
 // Méthode GET pour obtenir tous les rights qui existe
 const getAllCollection = async (req, res) => {
@@ -90,7 +143,32 @@ const getAllCollection = async (req, res) => {
 };
 
 
-
+/**
+ * @api {get} /collection/GetAllNftByIDCollection/:id Get All NFTs by Collection ID
+ * @apiName GetAllNftByIDCollection
+ * @apiGroup Collection
+ *
+ * @apiParam {Number} id ID of the collection.
+ *
+ * @apiSuccess {Object[]} NFTs List of all NFTs in the collection.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "NFT_ID": 1,
+ *         "NFT_name": "NFT 1",
+ *         "NFT_metadata_json": {...},
+ *         "NFT_rightID": 1,
+ *         "NFT_CollectionID": 1,
+ *         "NFT_OwnerID": 2,
+ *         "NFT_CreatorID": 1
+ *       },
+ *       // More NFTs...
+ *     ]
+ *
+ * @apiError (404 Not Found) {String} error Collection inexistante.
+ * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ */
 // Méthode GET pour obtenir tous les NFTs d'une collection avec vérification d'existence de la collection
 const getAllNftByIDCollection = async (req, res) => {
   const id = req.params.id;
