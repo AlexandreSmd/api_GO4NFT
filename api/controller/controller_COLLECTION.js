@@ -6,8 +6,8 @@ const { mintNFTA } = require('./mint-collection');
  * @apiName CreateCollection
  * @apiGroup Collection
  *
- * @apiHeader {String} x-keypub Public key of the creator.
- * @apiHeader {String} x-keyprv Private key of the creator.
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
  *
  * @apiParam {Number} Collection_NumberOfNFT Number of NFTs in the collection.
  * @apiParam {String} Collection_Name Name of the collection.
@@ -113,6 +113,9 @@ const createCollection = async (req, res) => {
  * @apiName GetAllCollection
  * @apiGroup Collection
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiSuccess {Object[]} collection List of all collections.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -148,6 +151,9 @@ const getAllCollection = async (req, res) => {
  * @apiName GetAllNftByIDCollection
  * @apiGroup Collection
  *
+ * 
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
  * @apiParam {Number} id ID of the collection.
  *
  * @apiSuccess {Object[]} NFTs List of all NFTs in the collection.

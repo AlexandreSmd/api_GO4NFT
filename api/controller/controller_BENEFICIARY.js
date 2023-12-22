@@ -8,6 +8,9 @@ const db = require('../middleware/connectDB');
  * @apiName CreateBeneficiary
  * @apiGroup Beneficiary
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {String} Beneficiary_Name Name of the beneficiary.
  * @apiParam {String} Beneficiary_keypub Public key of the beneficiary.
  * @apiParam {String} Beneficiary_keyprv Private key of the beneficiary.
@@ -55,6 +58,9 @@ const createBeneficiary = async (req, res) => {
  * @apiName GetEthAddressOfBeneficiary
  * @apiGroup Beneficiary
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {Number} id ID of the beneficiary.
  *
  * @apiSuccess {String} Beneficiary_ETHAdress Ethereum address of the beneficiary.
@@ -91,6 +97,9 @@ const getETHAdressFromID = async (req, res) => {
  * @api {put} /beneficiary/UpdateBeneficiaryEthAddress/:id Update Beneficiary's Ethereum Address
  * @apiName UpdateBeneficiaryEthAddress
  * @apiGroup Beneficiary
+ * 
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
  *
  * @apiParam {Number} id ID of the beneficiary.
  * @apiParam {String} Beneficiary_ETHAdress New Ethereum address of the beneficiary.
@@ -139,6 +148,9 @@ const updateEthAdress = async (req, res) => {
  * @apiName GetAllBeneficiary
  * @apiGroup Beneficiary
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiSuccess {Object[]} beneficiary List of all beneficiaries.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK

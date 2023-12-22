@@ -5,6 +5,9 @@ const db = require('../middleware/connectDB');
  * @apiName GetRightsByBeneficiaryID
  * @apiGroup BeneficiaryRights
  *
+ * 
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
  * @apiParam {Number} id ID of the beneficiary.
  *
  * @apiSuccess {Number[]} BeneficiaryRight_RightID Array of Beneficiary Right IDs associated with the beneficiary.

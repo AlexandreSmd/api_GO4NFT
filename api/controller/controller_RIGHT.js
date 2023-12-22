@@ -5,6 +5,9 @@ const db = require('../middleware/connectDB');
  * @apiName CreateRight
  * @apiGroup Right
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {String} Right_Name Name of the right.
  *
  * @apiSuccess {String} message Success message.
@@ -42,6 +45,9 @@ const createRight = async (req, res) => {
  * @apiName GetAllRights
  * @apiGroup Right
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiSuccess {Object[]} rights List of rights.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK

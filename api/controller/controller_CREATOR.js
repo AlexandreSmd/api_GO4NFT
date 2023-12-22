@@ -5,6 +5,9 @@ const db = require('../middleware/connectDB');
  * @apiName GetAllCreators
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiSuccess {Object[]} creators List of all creators.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -39,6 +42,9 @@ const getAllCreators = async (req, res) => {
  * @apiName GetAllCreatorName
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiSuccess {Object[]} creators List of all creator names.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -68,6 +74,9 @@ const getAllCreatorName = async (req, res) => {
  * @apiName GetOneCreatorNameByID
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {Number} id ID of the creator.
  *
  * @apiSuccess {Object} Creator_Name Creator name.
@@ -107,6 +116,9 @@ const getOneCreatorNameByID = async (req, res) => {
  * @apiName CreateCreator
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {String} Creator_Name Name of the creator.
  * @apiParam {String} Creator_keypub Public key of the creator.
  * @apiParam {String} Creator_keyprv Private key of the creator.
@@ -145,6 +157,9 @@ const createCreator = async (req, res) => {
  * @apiName UpdateNameCreator
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {Number} id ID of the creator.
  * @apiParam {String} Creator_Name New name for the creator.
  *
@@ -192,6 +207,9 @@ const updateNameCreator = async (req, res) => {
  * @apiName UpdateCCreator
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {Number} id ID of the creator.
  * @apiParam {Number} Creator_C_add Number of credits to add to the creator.
  *
@@ -251,6 +269,9 @@ const updateCCreator = async (req, res) => {
  * @apiName IfCreatorExist
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {Number} id ID of the creator.
  *
  * @apiSuccess {Boolean} exists Indicates whether the creator exists or not.
@@ -285,6 +306,9 @@ const ifCreatorExist = async (req, res) => {
  * @apiName GetCCreator
  * @apiGroup Creator
  *
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
  * @apiParam {Number} id ID of the creator.
  *
  * @apiSuccess {Object} CREATOR_C Creator credits.

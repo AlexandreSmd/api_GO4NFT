@@ -5,8 +5,8 @@ const db = require('../middleware/connectDB');
  * @apiName CreateNFTRight
  * @apiGroup NFTRight
  *
- * @apiHeader {String} x-keypub Creator's public key.
- * @apiHeader {String} x-keyprv Creator's private key.
+ * @apiHeader {String} x-keypub Public key of the actor.
+ * @apiHeader {String} x-keyprv Private key of the actor.
  *
  * @apiParam {Number} NFTRIGHT_IDNFT ID of the associated NFT.
  * @apiParam {Number} NFTRIGHT_IDRIGHT ID of the associated right.
