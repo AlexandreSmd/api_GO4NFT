@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 // Importez vos routes ici
 const routesCreator = require('./api/routes/routes_CREATOR'); 
@@ -11,6 +12,15 @@ const routesBeneficiaryRight = require('./api/routes/routes_BENEFICIARYRIGHT');
 const routesNFTRIGHT = require('./api/routes/routes_NFTRIGHT'); 
 
 app.use(express.json());
+
+// Définir la limite de taux (rate limit)
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // nombre maximal de requêtes par fenêtre
+  message: 'Too many request from this IP address, try again later.',
+});
+
+app.use('/api', apiLimiter);
 
 // Montez les routes sur un chemin spécifique
 app.use('/api', routesCreator);
