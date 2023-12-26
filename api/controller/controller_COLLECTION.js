@@ -24,6 +24,27 @@ const { mintNFTA } = require('./mint-collection');
  *       "message": "Collection successfully added"
  *     }
  *
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ * 
  * @apiError (500 Internal Server Error) {String} error Error when inserting data in the COLLECTION table.
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 500 Internal Server Error
@@ -130,8 +151,34 @@ const createCollection = async (req, res) => {
  *       },
  *       // More collections...
  *     ]
+ * 
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
  *
  * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Server error during data recovery
+ *     {
+ *       "error": "Server error during data recovery"
+ *     }
  */
 
 // Méthode GET pour obtenir tous les rights qui existe
@@ -171,10 +218,45 @@ const getAllCollection = async (req, res) => {
  *       },
  *       // More NFTs...
  *     ]
+ * 
+ * 
+* @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
  *
- * @apiError (404 Not Found) {String} error Collection inexistante.
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
+ * @apiError (404 Not Found) {String} error Collection Not Found.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "Collection Not Found"
+ *     }
+ * 
  * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "error Server error during data recovery."
+ *     }
  */
+
 // Méthode GET pour obtenir tous les NFTs d'une collection avec vérification d'existence de la collection
 const getAllNftByIDCollection = async (req, res) => {
   const id = req.params.id;
@@ -185,7 +267,7 @@ const getAllNftByIDCollection = async (req, res) => {
 
     if (collection.length === 0) {
       // Si la collection n'existe pas, renvoyer une erreur
-      res.status(404).json({ error: 'Collection inexistante' });
+      res.status(404).json({ error: 'Collection Not Found' });
       return;
     }
 

@@ -19,12 +19,50 @@ const db = require('../middleware/connectDB');
  *       "message": "NFT right successfully added",
  *       "id": 1
  *     }
+ * 
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
  *
- * @apiError (401 Unauthorized) {String} error Invalid public or private key.
- * @apiError (403 Forbidden) {String} error You are not the creator of this NFT.
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ * 
+ * @apiError (403 Unauthorized) {String} error You are not the creator of this NFT.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 403 Unauthorized
+ *     {
+ *       "error": "You are not the creator of this NFT"
+ *     }
+ * 
  * @apiError (404 Not Found) {String} error NFT not found.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "NFT not found"
+ *     }
+ * 
  * @apiError (500 Internal Server Error) {String} error Server Error Creating NFT right.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server Error Creating NFT right"
+ *     }
  */
+
 
 const createNFTRight = async (req, res) => {
   const { NFTRIGHT_IDNFT, NFTRIGHT_IDRIGHT } = req.body;

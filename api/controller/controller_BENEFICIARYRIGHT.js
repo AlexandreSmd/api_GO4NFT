@@ -18,7 +18,39 @@ const db = require('../middleware/connectDB');
  *     }
  *
  * @apiError (404 Not Found) {String} error No beneficiary rights found for this beneficiary ID.
+ *  @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "No beneficiary rights found for this beneficiary ID"
+ *     }
+ *
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
  * @apiError (500 Internal Server Error) {String} error Server error when retrieving BeneficiaryRight_RightIDs.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error when retrieving BeneficiaryRight_RightIDs"
+ *     }
  */
 
 

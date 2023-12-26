@@ -22,7 +22,34 @@ const db = require('../middleware/connectDB');
  *       // More creators...
  *     ]
  *
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
  * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error during data recovery"
+ *     }
  */
 
 // Méthode GET pour obtenir tous les créateurs
@@ -55,8 +82,36 @@ const getAllCreators = async (req, res) => {
  *       // More creator names...
  *     ]
  *
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
  * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error during data recovery"
+ *     }
  */
+
 
 // Méthode GET pour obtenir tous les nom des créateurs
 const getAllCreatorName = async (req, res) => {
@@ -85,10 +140,45 @@ const getAllCreatorName = async (req, res) => {
  *     {
  *       "Creator_Name": "John Doe"
  *     }
+ * 
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
  *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
  * @apiError (404 Not Found) {String} error Creator not found.
- * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "Creator not found"
+ *     }
+ * 
+ * @apiError (500 Internal Server Error) {String} error Server error when updating the beneficiary.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error when updating the beneficiary"
+ *     }
  */
+
+
 
 // Méthode GET pour obtenir un créateur par son ID
 const getOneCreatorNameByID = async (req, res) => {
@@ -131,8 +221,35 @@ const getOneCreatorNameByID = async (req, res) => {
  *       "message": "Creator successfully added",
  *       "id": 1
  *     }
+ * 
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
  *
- * @apiError (500 Internal Server Error) {String} error Server error when creating the creator.
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
+ * @apiError (500 Internal Server Error) {String} Server error when creating the creator.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error when creating the creator"
+ *     }
  */
 
 // Méthode POST pour créer un créateur
@@ -172,9 +289,44 @@ const createCreator = async (req, res) => {
  *       "id": 1
  *     }
  *
+  * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
+ * 
  * @apiError (404 Not Found) {String} error Creator not found.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "Creator not found"
+ *     }
+ * 
  * @apiError (500 Internal Server Error) {String} error Server error updating creator.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error updating creator"
+ *     }
  */
+
 
 // Méthode PUT pour mettre à jour un créateur
 const updateNameCreator = async (req, res) => {
@@ -221,9 +373,42 @@ const updateNameCreator = async (req, res) => {
  *       "message": "Creator updated successfully",
  *       "id": 1
  *     }
+ * 
+  * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
  *
- * @apiError (404 Not Found) {String} error Créateur inexistant.
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
+ * @apiError (404 Not Found) {String} error Creator not found.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "Creator not found"
+ *     }
+ * 
  * @apiError (500 Internal Server Error) {String} error Server error updating creator.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error updating creator"
+ *     }
  */
 
 // Méthode PUT pour mettre à jour les crédits d'un créateur
@@ -281,7 +466,41 @@ const updateCCreator = async (req, res) => {
  *       "exists": true
  *     }
  *
+  * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
+ * @apiError (404 Not Found) {String} error Creator not found.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "False"
+ *     }
+ * 
  * @apiError (500 Internal Server Error) {String} error Server Error Retrieving Data.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server Error Retrieving Data"
+ *     }
  */
 
 // Méthode GET pour voir si un créateur existe.
@@ -317,9 +536,36 @@ const ifCreatorExist = async (req, res) => {
  *     {
  *       "CREATOR_C": 100
  *     }
+ * 
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
  *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ * 
  * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error during data recovery"
+ *     }
  */
+
 
 const getCCreator = async (req, res) => {
   try {

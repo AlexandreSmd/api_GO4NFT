@@ -25,14 +25,35 @@ const db = require('../middleware/connectDB');
  *       "id": 1
  *     }
  *
- * @apiError (500 Internal Server Error) {String} error Server error when creating a beneficiary.
- * @apiErrorExample {json} Error-Response:
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Error 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
+ * @apiError (500 Internal Server Error) {String} error Server error checking the key pair.
+ * @apiErrorExample {json} InternalServerError-Response:
  *     HTTP/1.1 500 Internal Server Error
  *     {
- *       "error": "Server error when creating a beneficiary"
+ *       "error": "Server Error when creating beneficiary "
  *     }
  */
-
 
 // Méthode POST pour créer un créateur
 const createBeneficiary = async (req, res) => {
@@ -69,9 +90,41 @@ const createBeneficiary = async (req, res) => {
  *     {
  *       "Beneficiary_ETHAdress": "0x1234..."
  *     }
+ * 
+ * @apiError (404 Not Found) {String} errorBeneficiary not foundD.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "Beneficiary not found"
+ *     }
  *
- * @apiError (404 Not Found) {String} error Beneficiary not found.
- * @apiError (500 Internal Server Error) {String} error Server error when retrieving the beneficiary's ethereum address.
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * @apiError (500 Internal Server Error) {String} error error Server error when retrieving the beneficiary's ethereum address.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "error Server error when retrieving the beneficiary's ethereum address"
+ *     }
  */
 
 // Méthode GET pour obtenir l'adresse ETH à partir de l'ID du beneficiare
@@ -113,9 +166,43 @@ const getETHAdressFromID = async (req, res) => {
  *       "id": 1
  *     }
  *
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
+ *
+ * 
  * @apiError (404 Not Found) {String} error Beneficiary not found.
- * @apiError (500 Internal Server Error) {String} error Server error when updating beneficiary.
+ * @apiErrorExample {json} Not Found-Response :
+ *     HTTP/1.1 404 Unauthorized
+ *     {
+ *       "error": "Beneficiary not found"
+ *     }
+ * 
+ * @apiError (500 Internal Server Error) {String} error Server error when updating the beneficiary.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error when updating the beneficiary"
+ *     }
  */
+
 
 // Méthode PUT pour mettre à jour un créateur
 const updateEthAdress = async (req, res) => {
@@ -164,9 +251,36 @@ const updateEthAdress = async (req, res) => {
  *       },
  *       // More beneficiaries...
  *     ]
+ * *
+ * @apiError (401 Unauthorized 1) {String} error Public or private key missing.
+ * @apiErrorExample {json} Unauthorized-Response 1:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Public or private key missing"
+ *     }
+ *
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
+ * @apiErrorExample {json} Unauthorized-Response 2:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Bad actor"
+ *     }
+ *
+ * @apiError (401 Unauthorized 3) {String} error Invalid key pair.
+ * @apiErrorExample {json} Unauthorized-Response 3:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error": "Invalid key pair"
+ *     }
  *
  * @apiError (500 Internal Server Error) {String} error Server error during data recovery.
+ * @apiErrorExample {json} InternalServerError-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Server error during data recovery"
+ *     }
  */
+
 // Méthode GET pour obtenir tous les créateurs
 const getAllBeneficiary = async (req, res) => {
   try {
