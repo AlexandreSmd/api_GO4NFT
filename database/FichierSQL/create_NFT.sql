@@ -1,4 +1,4 @@
-USE DatabaseAPI;
+USE databasego4nft;
 -- Création de la table "NFT"
 CREATE TABLE NFT (
     NFT_ID INT,

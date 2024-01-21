@@ -1,4 +1,4 @@
-USE DatabaseAPI;
+USE databasego4nft;
 -- Création de la table "COLLECTION"
 CREATE TABLE COLLECTION (
     Collection_ID INT AUTO_INCREMENT PRIMARY KEY,

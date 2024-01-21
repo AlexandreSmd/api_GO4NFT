@@ -47,8 +47,4 @@ contract NftSC is ERC721URIStorage, Ownable {
         return newItemId;
     }
 
-    function transferNFT(address to, uint256 tokenId) public {
-    require(_isApprovedOrOwner(_msgSender(), tokenId), "NftSC: transfer caller is not owner nor approved");
-    _transfer(_msgSender(), to, tokenId);
-    }
 }

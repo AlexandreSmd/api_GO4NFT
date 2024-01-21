@@ -1,4 +1,4 @@
-USE DatabaseAPI;
+USE databasego4nft;
 -- Création de la table "RIGHT"
 CREATE TABLE `RIGHT` (
     Right_ID INT AUTO_INCREMENT PRIMARY KEY,

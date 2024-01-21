@@ -1,1 +1,1 @@
-CREATE DATABASE DatabaseNFT
+CREATE DATABASE databasego4nft

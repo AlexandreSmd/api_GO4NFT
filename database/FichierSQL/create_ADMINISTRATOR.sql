@@ -1,4 +1,4 @@
-USE DatabaseAPI;
+USE databasego4nft;
 -- Création de la table "ADMINISTRATOR"
 CREATE TABLE ADMINISTRATOR (
     Administrator_ID INT AUTO_INCREMENT PRIMARY KEY,

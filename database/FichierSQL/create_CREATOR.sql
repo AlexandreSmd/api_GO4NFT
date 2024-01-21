@@ -1,5 +1,5 @@
 -- Active: 1696512186341@@127.0.0.1@3306@DatabaseAPI
-USE DatabaseAPI;
+USE databasego4nft;
 -- Création de la table "CREATOR"
 CREATE TABLE CREATOR (
     Creator_ID INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,4 +1,4 @@
-USE DatabaseAPI;
+USE databasego4nft;
 -- Création de la table "BENEFICIARYRIGHT"
 
 CREATE TABLE BENEFICIARYRIGHT (

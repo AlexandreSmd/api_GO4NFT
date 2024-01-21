@@ -1,4 +1,4 @@
-USE DatabaseAPI;
+USE databasego4nft;
 -- Création de la table "BENEFICIARY"
 CREATE TABLE BENEFICIARY (
     Beneficiary_ID INT AUTO_INCREMENT PRIMARY KEY,
