@@ -4,13 +4,52 @@ const db = require('../middleware/connectDB');
  * @api {post} /nftrights/Create Create NFT Right
  * @apiName CreateNFTRight
  * @apiGroup NFTRight
- *
+ * @apiDescription Ce endpoint est disponible pour les créateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  *
  * @apiParam {Number} NFTRIGHT_IDNFT ID of the associated NFT.
  * @apiParam {Number} NFTRIGHT_IDRIGHT ID of the associated right.
  *
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// Fonction de test pour créer un nouveau "Right"
+async function testCreateLinkRightNFT() {
+  try {
+    const newLink = {
+      NFTRIGHT_IDNFT : 1,
+      NFTRIGHT_IDRIGHT : 2,
+    };
+
+    const response = await axios.post(`${baseURL}/nft/LinkRightToNFT`, newLink, {
+      headers: {
+        'x-actor' : 'CREATOR',
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+      },
+    });
+
+    console.log('Résultat de la requête POST /nft/LinkRightToNFT :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête POST /nft/LinkRightToNFT :', error);
+  }
+}
+
+// Exécutez la fonction de test pour créer un nouveau lien entre un right et un NFT
+testCreateLinkRightNFT();
+
+ * 
+ * 
  * @apiSuccess {String} message Success message.
  * @apiSuccess {Number} id ID of the created NFT right.
  * @apiSuccessExample {json} Success-Response:

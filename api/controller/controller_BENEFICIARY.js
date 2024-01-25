@@ -8,6 +8,8 @@ const db = require('../middleware/connectDB');
  * @apiName CreateBeneficiary
  * @apiGroup Beneficiary
  *
+ * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
@@ -16,6 +18,50 @@ const db = require('../middleware/connectDB');
  * @apiParam {String} Beneficiary_keyprv Private key of the beneficiary.
  * @apiParam {String} Beneficiary_ETHAdress Ethereum address of the beneficiary.
  *
+ * 
+ * @apiParamExample {javascript} Request-Example:
+ * 
+const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = 'example_keypub';
+const keyprv = 'example_keyprv';
+
+// Fonction de test pour créer un nouveau créateur
+async function testCreateBeneficiary() {
+  try {
+    const newBeneficiary = {
+      Beneficiary_Name: 'Augustin',
+      Beneficiary_keypub: '12343542454356',
+      Beneficiary_keyprv: '48732345432375',
+      Beneficiary_ETHAdress: '0x95222290DD7278Aa3Ddd389Cc1E1d165CC4BAfe5 ', // L'ID de la collection associée
+    };
+
+    const response = await axios.post(`${baseURL}/beneficiary`, newBeneficiary, {
+      headers: {
+        'x-actor' : 'ADMINISTRATOR',
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+      },
+    });
+
+    console.log('Résultat de la requête POST /BENEFICIARY :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête POST /BENEFICIARY :', error);
+  }
+}
+
+// Exécutez la fonction de test pour créer un nouveau créateur
+testCreateBeneficiary();
+ * 
+ * 
+ * 
+ * 
+ * 
  * @apiSuccess {String} message Success message.
  * @apiSuccess {Number} id ID of the created beneficiary.
  * @apiSuccessExample {json} Success-Response:
@@ -32,7 +78,7 @@ const db = require('../middleware/connectDB');
  *       "error": "Public or private key missing"
  *     }
  *
- * @apiError (401 Error 2) {String} error Bad actor.
+ * @apiError (401 Unauthorized 2) {String} error Bad actor.
  * @apiErrorExample {json} Unauthorized-Response 2:
  *     HTTP/1.1 401 Unauthorized
  *     {
@@ -79,11 +125,49 @@ const createBeneficiary = async (req, res) => {
  * @apiName GetEthAddressOfBeneficiary
  * @apiGroup Beneficiary
  *
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
  * @apiParam {Number} id ID of the beneficiary.
  *
+ * 
+ * @apiParamExample {javascript} Request-Example:
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// Fonction de test pour obtenir l'adresse ETH à partir de l'ID du bénéficiaire
+async function testGetETHAddressFromID(beneficiaryId) {
+  try {
+    const response = await axios.get(`${baseURL}/beneficiary/GetEthAddressOfBeneficiary/${beneficiaryId}`, {
+      headers: {
+        'x-actor' : 'CREATOR',
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+      },
+    });
+
+    console.log('Résultat de la requête GET /beneficiary/:id :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête GET /beneficiary/:id :', error);
+  }
+}
+
+// Remplacez "beneficiaryId" par l'ID du bénéficiaire que vous souhaitez obtenir
+const beneficiaryId = 2; // Par exemple, remplacez 1 par l'ID souhaité
+
+// Exécutez la fonction de test pour obtenir l'adresse ETH à partir de l'ID du bénéficiaire
+testGetETHAddressFromID(beneficiaryId);
+
+ * 
  * @apiSuccess {String} Beneficiary_ETHAdress Ethereum address of the beneficiary.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -151,12 +235,61 @@ const getETHAdressFromID = async (req, res) => {
  * @apiName UpdateBeneficiaryEthAddress
  * @apiGroup Beneficiary
  * 
+ * @apiDescription Ce endpoint est disponible pour les bénéficaires.
+ * 
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  *
  * @apiParam {Number} id ID of the beneficiary.
  * @apiParam {String} Beneficiary_ETHAdress New Ethereum address of the beneficiary.
  *
+ * 
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// ID du bénéficiare que vous souhaitez mettre à jour
+const beneficiaryIdToUpdate = 1; 
+
+// Nouvelle adresse eth
+const updatedAdress = 'wrsjehbtszhvsrxskgecdb'; // Remplacez par la nouvelle adresse ethereum (clé publique) que vous souhaitez définir
+
+// Fonction de test pour mettre à jour un bénéficaire
+async function testUpdateBeneficiaryEth() {
+  try {
+    const updatedAdress2 = {
+      Beneficiary_ETHAdress: updatedAdress,
+    };
+
+    const response = await axios.put(`${baseURL}/beneficiary/UpdateBeneficiaryEthAddress/${creatorIdToUpdate}`, updatedAdress2, {
+      headers: {
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+        'x-actor': "BENEFICIARY",
+      },
+    });
+
+    console.log('Résultat de la requête PUT /beneficiary :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête PUT /beneficiary :', error);
+  }
+}
+
+// Exécutez la fonction de test pour mettre à jour un créateur
+testUpdateBeneficiaryEth();
+
+ * 
+ * 
+ * 
  * @apiSuccess {String} message Success message.
  * @apiSuccess {Number} id ID of the updated beneficiary.
  * @apiSuccessExample {json} Success-Response:
@@ -234,10 +367,46 @@ const updateEthAdress = async (req, res) => {
  * @api {get} /beneficiary/GetAllBeneficiary Get All Beneficiaries
  * @apiName GetAllBeneficiary
  * @apiGroup Beneficiary
+ * 
+ * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * 
  *
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// Fonction de test pour obtenir tous les bénéficiaires
+async function testGetAllBeneficiary() {
+  try {
+    const response = await axios.get(`${baseURL}/beneficiary/GetAllBeneficiary`, {
+      headers: {
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+        'x-actor' : 'ADMINISTRATOR',
+      },
+    });
+
+    console.log('Résultat de la requête GET /beneficiary/GetAllBeneficiary :');
+    console.log(response.data[0]);
+  } catch (error) {
+    console.error('Erreur lors de la requête GET /beneficiary/GetAllBeneficiary :', error);
+  }
+}
+
+// Exécutez la fonction de test pour obtenir tous les bénéficiares
+testGetAllBeneficiary();
+
  * @apiSuccess {Object[]} beneficiary List of all beneficiaries.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -281,7 +450,6 @@ const updateEthAdress = async (req, res) => {
  *     }
  */
 
-// Méthode GET pour obtenir tous les créateurs
 const getAllBeneficiary = async (req, res) => {
   try {
     const beneficiary = await db.promise().query('SELECT * FROM BENEFICIARY');

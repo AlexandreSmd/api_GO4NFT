@@ -27,7 +27,7 @@ async function mintNFTA(n, p1, p2, metadataArray, recipientAddresses) {
   }
 
   // Déployer un seul contrat NftSC avec les paramètres p1 et p2
-  const contract = await deployNftSC(p1, p2);
+  const contract = await deployNftSC(p1, p2,{ gasPrice: ethers.utils.parseUnits('50000000', 'gwei') });
   
   if (!contract) {
     console.error("Impossible de continuer avec un contrat non déployé.");

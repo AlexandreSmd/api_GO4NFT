@@ -11,7 +11,7 @@ const keyprv = '123';
 async function testCreateRight() {
   try {
     const newRight = {
-      Right_Name: 'BB AAAAAAAAAAAAA Right',
+      Right_Name: 'Test Right',
     };
 
     const response = await axios.post(`${baseURL}/right`, newRight, {

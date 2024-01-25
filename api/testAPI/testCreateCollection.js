@@ -12,23 +12,23 @@ async function testCreateCollection() {
   try {
     const newCollection = {
       "Collection_NumberOfNFT": 2,
-      "Collection_Name": "Ma Collection",
-      "Collection_Symbol": "TESTULTMILE",
+      "Collection_Name": "Collection_Test",
+      "Collection_Symbol": "TEST",
       "recipientAddresses": [
         "0x3e0CaBAac78d2c9Cc88A8D374E2141ae953B4B9A",
         "0x3e0CaBAac78d2c9Cc88A8D374E2141ae953B4B9A"
       ],"metadataArray": [
         {
           "name": "NFT 1",
-          "description": "Ceci est un dragon",
+          "description": "Ceci est un cadeau de la part du créateur Oméga",
           "image": "lien_image_1",
-          "rightID": 2
+          "rightID": 3
         },
         {
           "name": "NFT 2",
-          "description": "Ceci est une licorne",
+          "description": "Ceci est un cadeau de la part du créateur Oméga",
           "image": "lien_image_2",
-          "rightID": 2
+          "rightID": 3
         }
       ],
       "Collection_CreatorID": 2,

@@ -4,9 +4,42 @@ const db = require('../middleware/connectDB');
  * @api {get} /creators/GetAllCreators Get All Creators
  * @apiName GetAllCreators
  * @apiGroup Creator
- *
+ * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// Fonction de test pour obtenir tous les créateurs
+async function testGetAllCreator() {
+  try {
+    const response = await axios.get(`${baseURL}/creator/GetAllCreator`, {
+      headers: {
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+        'x-actor' : 'ADMINISTRATOR',
+      },
+    });
+
+    console.log('Résultat de la requête GET /creator/GetAllCreator :');
+    console.log(response.data[0]);
+  } catch (error) {
+    console.error('Erreur lors de la requête GET /creator/GetAllCreator :', error);
+  }
+}
+
+testGetAllCreator();
+
  * 
  * @apiSuccess {Object[]} creators List of all creators.
  * @apiSuccessExample {json} Success-Response:
@@ -69,8 +102,43 @@ const getAllCreators = async (req, res) => {
  * @apiName GetAllCreatorName
  * @apiGroup Creator
  *
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
+ * 
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// Fonction de test pour obtenir tous les noms des créateurs
+async function testGetAllCreatorName() {
+  try {
+    const response = await axios.get(`${baseURL}/creator/GetAllCreatorName`, {
+      headers: {
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+        'x-actor' : 'BENEFICIARY',
+      },
+    });
+
+    console.log('Résultat de la requête GET /creator/GetAllCreatorName :');
+    console.log(response.data[0]);
+  } catch (error) {
+    console.error('Erreur lors de la requête GET /creator/GetAllCreatorName :', error);
+  }
+}
+
+// Fonction de test pour obtenir tous les noms des créateurs
+testGetAllCreatorName();
+ * 
  * 
  * @apiSuccess {Object[]} creators List of all creator names.
  * @apiSuccessExample {json} Success-Response:
@@ -129,11 +197,51 @@ const getAllCreatorName = async (req, res) => {
  * @apiName GetOneCreatorNameByID
  * @apiGroup Creator
  *
+ * 
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
  * @apiParam {Number} id ID of the creator.
  *
+ * 
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// Fonction de test pour obtenir l'adresse ETH à partir de l'ID du bénéficiaire
+async function testGetAllCreator(creatorId) {
+  try {
+    const response = await axios.get(`${baseURL}/creator/GetCreatorNameWithId/${creatorId}`, {
+      headers: {
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+        'x-actor' : 'ADMINISTRATOR',
+      },
+    });
+
+    console.log('Résultat de la requête GET /creator/GetCreatorNameWithId/:id :');
+    console.log(response.data[0]);
+  } catch (error) {
+    console.error('Erreur lors de la requête GET /creator/GetCreatorNameWithId/:id :', error);
+  }
+}
+
+// Remplacez "creatorId" par l'ID du bénéficiaire que vous souhaitez obtenir
+const creatorId = 2; // Par exemple, remplacez 1 par l'ID souhaité
+
+testGetAllCreator(creatorId);
+
+ * 
+ * 
  * @apiSuccess {Object} Creator_Name Creator name.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -201,11 +309,14 @@ const getOneCreatorNameByID = async (req, res) => {
 };
 
 
+
+
 /**
  * @api {post} /creators/Create Create Creator
  * @apiName CreateCreator
  * @apiGroup Creator
- *
+ * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
@@ -213,6 +324,46 @@ const getOneCreatorNameByID = async (req, res) => {
  * @apiParam {String} Creator_keypub Public key of the creator.
  * @apiParam {String} Creator_keyprv Private key of the creator.
  *
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// Fonction de test pour créer un nouveau créateur
+async function testCreateCreator() {
+  try {
+    const newCreator = {
+      Creator_Name: 'Romain',
+      Creator_keypub: '122345356',
+      Creator_keyprv: '487237543',
+    };
+
+    const response = await axios.post(`${baseURL}/creator/createCreator`, newCreator, {
+      headers: {
+        'x-actor' : 'ADMINISTRATOR',
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+      },
+    });
+
+    console.log('Résultat de la requête POST /creator/createCreator :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête POST /creator/createCreator :', error);
+  }
+}
+
+// Exécutez la fonction de test pour créer un nouveau créateur
+testCreateCreator();
+
+ * 
+ * 
  * @apiSuccess {String} message Success message.
  * @apiSuccess {Number} id ID of the created creator.
  * @apiSuccessExample {json} Success-Response:
@@ -269,17 +420,68 @@ const createCreator = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
 /**
  * @api {put} /creators/UpdateName/:id Update Creator Name
  * @apiName UpdateNameCreator
  * @apiGroup Creator
- *
+ * @apiDescription Ce endpoint est disponible pour les créateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
  * @apiParam {Number} id ID of the creator.
  * @apiParam {String} Creator_Name New name for the creator.
  *
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// ID du créateur que vous souhaitez mettre à jour
+const CreatorIdToUpdate = 1; 
+
+// Nouveau nom
+const updatedName = 'Alexandre'; 
+
+// Fonction de test pour mettre à jour un créateur
+async function testUpdateCreatorName(updatedName2) {
+  try {
+    const updatedName = {
+      Creator_name: updatedName2,
+    };
+
+    const response = await axios.put(`${baseURL}/creator/UpdateCreatorName/${CreatorIdToUpdate}`, updatedName, {
+      headers: {
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+        'x-actor': "CREATOR",
+      },
+    });
+
+    console.log('Résultat de la requête PUT /creator/UpdateCreatorName/ :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête PUT /creator/UpdateCreatorName/ :', error);
+  }
+}
+
+// Exécutez la fonction de test pour mettre à jour un créateur
+testUpdateBeneficiaryEth();
+
+ * 
+ * 
  * @apiSuccess {String} message Success message.
  * @apiSuccess {Number} id ID of the updated creator.
  * @apiSuccessExample {json} Success-Response:
@@ -354,17 +556,66 @@ const updateNameCreator = async (req, res) => {
   }
 };
 
+
+
+
 /**
  * @api {put} /creators/UpdateCCreator/:id Update Creator Credits
  * @apiName UpdateCCreator
  * @apiGroup Creator
  *
+ * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
  * @apiParam {Number} id ID of the creator.
  * @apiParam {Number} Creator_C_add Number of credits to add to the creator.
  *
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+// ID du créateur que vous souhaitez mettre à jour
+const creatorIdToUpdate = 1; // Remplacez par l'ID du créateur que vous souhaitez mettre à jour
+
+// Montant à ajouter au crédit du créateur
+const C_add = 10; // Remplacez par le montant que vous souhaitez ajouter
+
+// Fonction de test pour mettre à jour le crédit d'un créateur
+async function testUpdateCCreator() {
+  try {
+    const updatedCreator = {
+      Creator_C_add: C_add,
+    };
+
+    const response = await axios.put(`${baseURL}/creator/UpdateCompteurCreator/${creatorIdToUpdate}`, updatedCreator, {
+      headers: {
+        'x-actor': "ADMINISTRATOR",
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+      },
+    });
+
+    console.log('Résultat de la requête PUT /creator/UpdateCompteurCreator/ :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête PUT /creator/UpdateCompteurCreator/ :', error);
+  }
+}
+
+// Exécutez la fonction de test pour mettre à jour le crédit d'un créateur
+testUpdateCCreator();
+
+ * 
+ * 
  * @apiSuccess {String} message Success message.
  * @apiSuccess {Number} id ID of the updated creator.
  * @apiSuccessExample {json} Success-Response:
@@ -453,12 +704,48 @@ const updateCCreator = async (req, res) => {
  * @api {get} /creators/IfCreatorExist/:id Check If Creator Exists
  * @apiName IfCreatorExist
  * @apiGroup Creator
- *
+ * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
  * @apiParam {Number} id ID of the creator.
  *
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+const creatorID = 2;
+
+// Fonction de test pour voir si un créateur existe 
+async function testIfCreatorExist() {
+  try {
+    const response = await axios.get(`${baseURL}/creator/ifCreatorExist/${creatorID}`, {
+      headers: {
+        'x-actor' : 'CREATOR',
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+      },
+    });
+
+    console.log('Résultat de la requête GET /creator/ifCreatorExist/:id :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête GET /creator/ifCreatorExist/:id :', error);
+  }
+}
+
+// Exécutez la fonction de test 
+testIfCreatorExist();
+
+ * 
  * @apiSuccess {Boolean} exists Indicates whether the creator exists or not.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -524,12 +811,46 @@ const ifCreatorExist = async (req, res) => {
  * @api {get} /creators/GetCCreator/:id Get Creator Credits
  * @apiName GetCCreator
  * @apiGroup Creator
- *
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
  * 
  * @apiParam {Number} id ID of the creator.
  *
+ * 
+ * @apiParamExample {javascript} Request-Example:
+ * 
+ * const axios = require('axios');
+
+// Remplacez ceci par l'URL de base de votre API
+const baseURL = 'http://92.222.172.127:3000/api';
+
+// Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
+const keypub = '123';
+const keyprv = '123';
+
+const creatorID = 2;
+
+async function testGetC() {
+  try {
+    const response = await axios.get(`${baseURL}/creator/GetCCreator/${creatorID}`, {
+      headers: {
+        'x-actor' : 'CREATOR',
+        'x-keypub': keypub,
+        'x-keyprv': keyprv,
+      },
+    });
+
+    console.log('Résultat de la requête GET /creator/ifCreatorExist/:id :');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Erreur lors de la requête GET /creator/ifCreatorExist/:id :', error);
+  }
+}
+
+testGetC();
+
  * @apiSuccess {Object} CREATOR_C Creator credits.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK

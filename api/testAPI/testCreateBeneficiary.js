@@ -4,8 +4,8 @@ const axios = require('axios');
 const baseURL = 'http://localhost:3000/api';
 
 // Clé publique et privée valide pour les tests (remplacez-les par vos clés réelles si nécessaire)
-const keypub = '123';
-const keyprv = '123';
+const keypub = 'example_keypub';
+const keyprv = 'example_keyprv';
 
 // Fonction de test pour créer un nouveau créateur
 async function testCreateBeneficiary() {
@@ -25,10 +25,10 @@ async function testCreateBeneficiary() {
       },
     });
 
-    console.log('Résultat de la requête POST /creator :');
+    console.log('Résultat de la requête POST /BENEFICIARY :');
     console.log(response.data);
   } catch (error) {
-    console.error('Erreur lors de la requête POST /creator :', error);
+    console.error('Erreur lors de la requête POST /BENEFICIARY :', error);
   }
 }
 
