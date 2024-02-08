@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "description": "Il y a trois types d'acteurs qui peuvent interagir avec cette API : les administrateurs, les créateurs et les bénéficiaires. A chaque méthode, le type d'acteur autorisé à faire cette requête est spécifié ainsi que ce que fait concrètement la requête. Les parties en tête et paramètres précisent ce qu'il faut renseigner dans ces parties. Enfin, les messages de succès et d'erreur possible sont expliciter.",
     "title": "API",
-    "url" : "http://localhost:3000"
+    "url" : "http://92.222.172.127:3000"
   }
   
