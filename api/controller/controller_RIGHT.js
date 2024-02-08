@@ -4,7 +4,7 @@ const db = require('../middleware/connectDB');
  * @api {post} /rights/Create Create Right
  * @apiName CreateRight
  * @apiGroup Right
- * @apiDescription Ce endpoint est disponible pour les créateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs. Il permet de créer un droit.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -108,7 +108,7 @@ const createRight = async (req, res) => {
  * @api {get} /rights/GetAllRights Get All Rights
  * @apiName GetAllRights
  * @apiGroup Right
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet de voir les informations de tous les droits.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.

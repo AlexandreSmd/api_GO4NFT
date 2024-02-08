@@ -6,7 +6,7 @@ const { mintNFTA } = require('./mint-collection');
  * @apiName CreateCollection
  * @apiGroup Collection
  *
- * @apiDescription Ce endpoint est disponible pour les créateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs. Il permet à un créateur de dépoyer un smart contract sur Ethereum et de minter n NFTs à certaines adresses.
  * 
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
@@ -197,7 +197,7 @@ const createCollection = async (req, res) => {
  * @api {get} /collection/GetAllCollection Get All Collections
  * @apiName GetAllCollection
  * @apiGroup Collection
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet à un administrateur d'obtenir toutes les informations de toutes les collections.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -262,7 +262,7 @@ const getAllCollection = async (req, res) => {
  * @api {get} /collection/GetAllNftByIDCollection/:id Get All NFTs by Collection ID
  * @apiName GetAllNftByIDCollection
  * @apiGroup Collection
- * @apiDescription Ce endpoint est disponible pour les créateurs, bénéficaires et les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs, bénéficaires et les administrateurs. Il permet d'obtenir toutes les informations sur les NFTs d'une collection précise.
  * 
  * 
  * @apiHeader {String} x-keypub Public key of the actor.

@@ -1,42 +1,13 @@
-# api_nft
+# API GO4NFT #
 
-Pour lancer l'API, il faut faire
-node app.js
+### Alexandre Simaillaud - Projet ###
 
-Pour tester mes différentes méthodes, il faut faire
+Objectif du projet : faciliter la création de NFT par les créateurs de contenus et la consommation de contenu d'art à travers les NFTs pour les consommateurs.
+
+Pour lancer l'API, il suffit de lancer le fichier app.js avec la commande node app.js.
+
+Pour tester les différentes méthodes possible de l'API, il faut faire ces commande dans le terminal
 cd api/testAPI
-node testCreateCollection.js par ex
+node testCreateCollection.js 
 
-api_nft_v1
-├── api
-│   ├── contract
-│   ├── controller
-│   ├── middleware
-│   ├── routes
-│   └── testAPI
-├── assets
-├── database
-│   └── FichierSQL
-├── frontend
-│   └── pdf
-├── node_modules
-│   
-├── README.md
-├── .env
-├── apidoc.json
-├── app.js
-├── hardhat.config.js
-├── index.html
-├── package-lock.json
-└── package.json
-
-
-
-http://localhost:3000
-
-apidoc -i ./ -o ./
-
-
-https://www.mermaidchart.com/app/projects/3a67efba-9337-497c-91f7-052d9fcc2c48/diagrams/70e20158-be69-4baa-9755-9ad3b2cc8ffd/version/v0.1/edit
-
-https://diagrams.helpful.dev/s/s:b1gZgb9l
+La documentation de l'API a été générée par apidoc et est le fichier index.html à la racine du projet.

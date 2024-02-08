@@ -5,7 +5,7 @@ const db = require('../middleware/connectDB');
  * @apiName GetRightsByBeneficiaryID
  * @apiGroup BeneficiaryRights
  *
- * @apiDescription Ce endpoint est disponible pour les administrateurs, les créateurs et les bénéficaire.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs, les créateurs et les bénéficaire. Il permet à un acteur de récuperer les droits qu'un bénéficaire a en donnant en argument l'ID du bénéficaire.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -98,7 +98,8 @@ const getRightsByBeneficiaryID = async (req, res) => {
   const BeneficiaryID = req.params.id; // L'ID du bénéficiaire est extrait des paramètres de l'URL
 
   try {
-    const [rows] = await db.promise().query('SELECT BeneficiaryRight_RightID FROM BENEFICIARYRIGHT WHERE BeneficiaryRight_BeneficiaryID = ?', BeneficiaryID);
+    const [rows] = await db.promise().query('SELECT BeneficiaryRight_RightID FROM BENEFICIARYRIGHT WHERE BeneficiaryRight_BeneficiaryID = ?', 
+    BeneficiaryID);
 
     // Vérifiez si des résultats ont été trouvés
     if (rows.length > 0) {

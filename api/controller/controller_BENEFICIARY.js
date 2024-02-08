@@ -8,7 +8,7 @@ const db = require('../middleware/connectDB');
  * @apiName CreateBeneficiary
  * @apiGroup Beneficiary
  *
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet à un administrateur de créer un bénéficaire.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -125,7 +125,7 @@ const createBeneficiary = async (req, res) => {
  * @apiName GetEthAddressOfBeneficiary
  * @apiGroup Beneficiary
  *
- * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs. Il permet à un acteur de récuper l'adresse Ethereum d'un bénéficiaire (clé publique).
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -235,7 +235,7 @@ const getETHAdressFromID = async (req, res) => {
  * @apiName UpdateBeneficiaryEthAddress
  * @apiGroup Beneficiary
  * 
- * @apiDescription Ce endpoint est disponible pour les bénéficaires.
+ * @apiDescription Ce endpoint est disponible pour les bénéficaires. Il permet à un bénéficaire de mettre à jour la clé publique Ethereum.
  * 
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
@@ -368,7 +368,7 @@ const updateEthAdress = async (req, res) => {
  * @apiName GetAllBeneficiary
  * @apiGroup Beneficiary
  * 
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet d'obtenir toutes les informations de tous les bénéficaires.
  * 
  *
  * @apiHeader {String} x-keypub Public key of the actor.

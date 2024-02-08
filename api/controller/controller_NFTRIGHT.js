@@ -4,7 +4,7 @@ const db = require('../middleware/connectDB');
  * @api {post} /nftrights/Create Create NFT Right
  * @apiName CreateNFTRight
  * @apiGroup NFTRight
- * @apiDescription Ce endpoint est disponible pour les créateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs. Il permet de créer un lien entre un NFT et un droit
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.

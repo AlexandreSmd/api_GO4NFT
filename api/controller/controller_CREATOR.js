@@ -4,7 +4,7 @@ const db = require('../middleware/connectDB');
  * @api {get} /creators/GetAllCreators Get All Creators
  * @apiName GetAllCreators
  * @apiGroup Creator
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet d'obtenir toutes les informations de tous les créateurs.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -102,7 +102,7 @@ const getAllCreators = async (req, res) => {
  * @apiName GetAllCreatorName
  * @apiGroup Creator
  *
- * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs. Il permet d'obtenir tous les noms des créateurs enregistrés.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -198,7 +198,7 @@ const getAllCreatorName = async (req, res) => {
  * @apiGroup Creator
  *
  * 
- * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs. Il permet d'obtenir un nom de créateur à partir de son ID.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -315,7 +315,7 @@ const getOneCreatorNameByID = async (req, res) => {
  * @api {post} /creators/Create Create Creator
  * @apiName CreateCreator
  * @apiGroup Creator
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet de créer un créateur.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -430,7 +430,7 @@ const createCreator = async (req, res) => {
  * @api {put} /creators/UpdateName/:id Update Creator Name
  * @apiName UpdateNameCreator
  * @apiGroup Creator
- * @apiDescription Ce endpoint est disponible pour les créateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs. Il permet de mettre à jour le nom d'un créateur.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -564,7 +564,7 @@ const updateNameCreator = async (req, res) => {
  * @apiName UpdateCCreator
  * @apiGroup Creator
  *
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet de mettre à jour un compteur C d'un créateur.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -704,7 +704,7 @@ const updateCCreator = async (req, res) => {
  * @api {get} /creators/IfCreatorExist/:id Check If Creator Exists
  * @apiName IfCreatorExist
  * @apiGroup Creator
- * @apiDescription Ce endpoint est disponible pour les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les administrateurs. Il permet de savoir si un créateur existe bien quand on lui donne un ID.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -811,7 +811,7 @@ const ifCreatorExist = async (req, res) => {
  * @api {get} /creators/GetCCreator/:id Get Creator Credits
  * @apiName GetCCreator
  * @apiGroup Creator
- * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs.
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs. Il permet de connaitre le nombre de crédits qu'il reste à un créateur.
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
