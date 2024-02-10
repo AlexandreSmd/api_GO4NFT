@@ -125,7 +125,7 @@ const createBeneficiary = async (req, res) => {
  * @apiName GetEthAddressOfBeneficiary
  * @apiGroup Beneficiary
  *
- * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs. Il permet à un acteur de récuper l'adresse Ethereum d'un bénéficiaire (clé publique).
+ * @apiDescription Ce endpoint est disponible pour les créateurs, les bénéficaires et les administrateurs. Il permet à un acteur de récupérer l'adresse Ethereum d'un bénéficiaire (clé publique).
  * 
  * @apiHeader {String} x-keypub Public key of the actor.
  * @apiHeader {String} x-keyprv Private key of the actor.
@@ -175,7 +175,7 @@ testGetETHAddressFromID(beneficiaryId);
  *       "Beneficiary_ETHAdress": "0x1234..."
  *     }
  * 
- * @apiError (404 Not Found) {String} errorBeneficiary not foundD.
+ * @apiError (404 Not Found) {String} errorBeneficiary not found.
  * @apiErrorExample {json} Not Found-Response :
  *     HTTP/1.1 404 Unauthorized
  *     {
