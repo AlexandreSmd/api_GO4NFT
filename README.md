@@ -1,10 +1,10 @@
 # API GO4NFT - Alexandre Simaillaud
 
-## Project goal
+## Project goal 🎯
 
 Create a REST API facilitating the deployment of ERC-721-type smart contracts and the mint of NFTs on Ethereum and its compatible 2 EVM layers (Rollup, ZKSync and Polygon ZKevm).
 
-## Stack
+## Stack 🛠️
 
 - **Langages**: Javascript, HTML, CSS
 - **Framework**: ExpressJs
@@ -18,7 +18,7 @@ Create a REST API facilitating the deployment of ERC-721-type smart contracts an
 - **Version control**: Git
 
 
-## What I did
+## What I did ✅
 
 - Creation of an API with 19 routes associated with different methods.
 - Authentication system using a public and a private key. Three types of actors can make different requests, hence the need for an authentication system.
@@ -29,7 +29,7 @@ Create a REST API facilitating the deployment of ERC-721-type smart contracts an
 - Deploying the API on an Apache2 server.
 - Use of express-rate-limit to prevent DDoS attacks.
 
-## Usage
+## Usage 🚦
 
 - **Server Status**: The server is currently closed, and the API is not operational.
 
