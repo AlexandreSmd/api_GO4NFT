@@ -1,20 +1,22 @@
-# API GO4NFT - Alexandre Simaillaud - Projet #
+# API GO4NFT - Alexandre Simaillaud #
 
 ### Objectif du projet ###
 
-Faciliter la création de NFT par les créateurs de contenus et la consommation de contenu d'art à travers les NFTs pour les consommateurs.
+Créer une API REST pour faciliter le déploiement de smart contract de type ERC-721 et le mint d'NFTs sur Ethereum et ses layers 2 EVM compatible (scroll, ZKSync et Polygon ZKevm).
 
-### Comment lancer l'API ###
+### Stack ###
 
-Pour lancer l'API, il suffit de lancer le fichier app.js avec la commande node app.js.
+Javascript, HTML, CSS, ExpressJs
+Solidity, Hardhat, Web3.js, Ether.js, Alchemy, Pinata, MetaMask
+MySQL, Apache2
 
-### Pour tester l'API ###
+### Qu'est qui a été fait ? ###
 
-Pour tester les différentes méthodes possible de l'API, il faut aller dans le dossier testAPI et éxecuter la commande suivante dans le terminal : node testCreateCollection.js 
-
-### La documentation API ###
-La documentation de l'API a été générée par apidoc et est visualisable avec le fichier index.html à la racine du projet.
-
-
-### Autre information ###
-Pour toute information complémentaire, je vous laisse regarder le rapport qui a été écrit vis-à-vis de ce projet.
+Création d'une API (19 routes associés à différentes méthodes)
+Système d'authentification avec clé publique et clé privée (trois types d'acteurs différents peuvent faire des requêtes différentes, il y a donc un système d'authentification car les acteurs n'ont pas accès au même méthodes)
+Système d'erreur API
+Documentation API généré avec apidoc
+Frontend en Javascript
+Intégration de MetaMask au frontend
+Déploiement de l'API sur serveur apache2
+Utilisation de express-rate-limit pour éviter les attaques DDoS
