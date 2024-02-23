@@ -14,6 +14,9 @@ Créer une API REST facilitant le déploiement de smart contracts de type ERC-72
 - **Storage**: Pinata
 - **Database**: MySQL
 - **Server**: Apache2
+- **Système d'Exploitation**: Linux (Ubuntu)
+- **Contrôle de Version**: Git
+
 
 ## Ce qui a été réalisé
 
