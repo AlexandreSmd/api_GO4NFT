@@ -38,9 +38,12 @@ Create a REST API facilitating the deployment of ERC-721-type smart contracts an
   - Execute all .sql files to create the necessary SQL tables for the API.
   - Install Node.js version v20.8.0.
   - Run `npm install` to install all project dependencies.
-  - Launch the API using the command `node app.js`.
+  - Launch the API using the command node app.js. It will run on port 3000.
+  - Access the frontend by entering http://localhost:3000 in the browser's address bar.
 
 - **Testing Methods**:
-  - Utilize the test files available in the `api/testapi` directory to test various methods of the project.
+  - Utilize the test files available in the `api/testapi` directory to test various methods of the project. For example, run node testCreateCollection.js.
+  - Test various methods of the project on the frontend.
+
 
 Please note that due to the server being closed, the API is not currently usable. The provided instructions are for reference in case you want to use or run the API locally.
