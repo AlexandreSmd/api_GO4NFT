@@ -42,7 +42,7 @@ Create a REST API facilitating the deployment of ERC-721-type smart contracts an
   - Access the frontend by entering http://localhost:3000 in the browser's address bar.
 
 - **Testing Methods**:
-  - Utilize the test files available in the `api/testapi` directory to test various methods of the project. For example, run node testCreateCollection.js.
+  - Utilize the test files available in the `api/testapi` directory to test various methods of the project. For example, run `node testCreateCollection.js`.
   - Test various methods of the project on the frontend.
 
 
